@@ -17,7 +17,7 @@ namespace _WebAPI____HTTP_REST
 
         internal string GetTestPflanzen()
         {
-            throw new NotImplementedException();
+            return _db.GetTestPflanzen();
         }
     }
 }

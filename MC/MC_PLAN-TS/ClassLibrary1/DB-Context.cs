@@ -32,7 +32,7 @@ namespace _ClassLibrary____Common
     {
         [Key]
         [Column("Pflanzenname")]
-        public string EMail { get; set; }
+        public string Pflanzenname { get; set; }
         [Column("Bild")]
         public string Bild { get; set; }
         [Column("Gegossen")]
@@ -69,8 +69,17 @@ namespace _ClassLibrary____Common
             myOptionsBuilder.UseNpgsql(dbBuilder.ToString());
         }
 
-        public string GetTestPflanzen() { 
-
+        public string GetTestPflanzen() {
+            string returnstring = "";
+            lock (TestPflanzen)
+            {
+                TestPflanzen.OrderBy(p => p.Pflanzenname);
+                foreach (Pflanze s in TestPflanzen)
+                {                   
+                        returnstring += JsonSerializer.Serialize(s) + "|";
+                }
+            }
+            return returnstring;
         }
     }
 }
