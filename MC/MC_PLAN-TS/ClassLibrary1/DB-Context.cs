@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text.Json;
-
+using System.Linq;
 
 namespace _ClassLibrary____Common
 {
@@ -81,18 +76,22 @@ namespace _ClassLibrary____Common
 
         private void TestDatenGenerieren()
         {
-            for (int i = 0; i < 10; i++)
+            if (TestPflanzen.Count<Pflanze>() < 0)
             {
-                Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant" + i };
-                this.TestPflanzen.Add(n);
+                for (int i = 0; i < 10; i++)
+                {
+                    Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant" + i };
+                    this.TestPflanzen.Add(n);
+                }
             }
+            this.SaveChanges();
         }
 
         public string GetTestPflanzen()
         {
             string returnstring = "";
 
-            //TestPflanzen.OrderBy(p => p.Pflanzenname);
+            TestPflanzen.OrderBy(p => p.Pflanzenname);
             foreach (Pflanze s in this.TestPflanzen)
             {
                 returnstring += JsonSerializer.Serialize(s) + "|";
