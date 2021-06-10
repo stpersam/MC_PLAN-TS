@@ -14,26 +14,60 @@ using System.Text.Json;
 namespace _ClassLibrary____Common
 {
 
-    [Table("strings")]
-    public class Manipulationstring
+    [Table("user")]
+    public class User
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("ID")]
-        public int EntryId { get; set; }
-        [Column("String_Input")]
-        public string StringInput { get; set; }
-        [Column("Date")]
-        public DateTime Date { get; set; }
-        [Column("Service_Input")]
-        public string ServiceInput { get; set; }
-        [Column("Service_Output")]
-        public string ServiceOutput { get; set; }
+        [Key]
+        [Column("Username")]
+        public int UserId { get; set; }
+        [Column("email")]
+        public string EMail { get; set; }
+        [Column("Passwort")]
+        public string Passwort { get; set; }
 
     }
 
-    class DB_Context
+    [Table("pflanze")]
+    public class Pflanze
     {
-    
-    
+        [Key]
+        [Column("Pflanzenname")]
+        public string EMail { get; set; }
+        [Column("Bild")]
+        public string Bild { get; set; }
+        [Column("Gegossen")]
+        public DateTime Gegossen { get; set; }
+        [Column("Größe")]
+        public double Groesse { get; set; }
+
+    }
+
+    public class DB_Context :DbContext
+    {
+        public DbSet<Pflanze> TestPflanzen { get; set; }
+
+        public DB_Context() { }
+        public DB_Context(bool ensurecreated)
+        {
+            if (ensurecreated)
+            {
+                this.Database.EnsureCreated();
+            }
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder myOptionsBuilder)
+        {
+                        base.OnConfiguring(myOptionsBuilder);
+
+            NpgsqlConnectionStringBuilder dbBuilder = new NpgsqlConnectionStringBuilder();
+            dbBuilder.ApplicationName = "Plan-tsDB.EF";
+            dbBuilder.Database = "postgres";
+            dbBuilder.Host = "localhost";
+            dbBuilder.Port = 5432;
+            dbBuilder.Username = "postgres";
+
+            myOptionsBuilder.UseNpgsql(dbBuilder.ToString());
+        }
+
     }
 }
