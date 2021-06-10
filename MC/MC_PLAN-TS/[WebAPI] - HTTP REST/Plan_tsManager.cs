@@ -9,7 +9,7 @@ namespace _WebAPI____HTTP_REST
 {
     public class Plan_tsManager : Controller
     {
-        private static SmDbContext _db;
+        private static DB_Context _db;
         public Plan_tsManager()
         {   //create DB Context Instance
             _db = new DB_Context(true);

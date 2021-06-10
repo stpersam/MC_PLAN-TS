@@ -69,5 +69,8 @@ namespace _ClassLibrary____Common
             myOptionsBuilder.UseNpgsql(dbBuilder.ToString());
         }
 
+        public string GetTestPflanzen() { 
+
+        }
     }
 }

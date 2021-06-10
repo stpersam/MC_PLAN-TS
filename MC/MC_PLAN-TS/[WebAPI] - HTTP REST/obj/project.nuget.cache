@@ -1,17 +1,12 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "fWz3FgfH8aZkNmfu9f8oFh7PJ6ML8I6b4vU0N8HEPw5aFGsgAo6Hzw/536IUl339F67K/UpyKbfikgVQ822Hfw==",
-=======
-  "dgSpecHash": "ElVLLjIw3czGQDAmVsByXSIQBoXwf/Dygv+1zRP6HOoAfofrcDIr6lDgNkXkuUC51dfn2/qTccQrlgPrZEDhzw==",
->>>>>>> 92ee6b0c62cee96194c1939ef529497cbcbdde94
+  "dgSpecHash": "7IifrtUDg5H9ZmzzWC+E3zNgqg4GKXlXGm4BhkZgBSrfcVOuwOR/mhzjl7l2yLaIZoID5TeDZOjj4fSjThbZIA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
+  "projectFilePath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
   "expectedPackageFiles": [
-<<<<<<< HEAD
-    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.6\\microsoft.entityframeworkcore.5.0.6.nupkg.sha512",
-    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.6\\microsoft.entityframeworkcore.abstractions.5.0.6.nupkg.sha512",
-    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.6\\microsoft.entityframeworkcore.analyzers.5.0.6.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.7\\microsoft.entityframeworkcore.5.0.7.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.7\\microsoft.entityframeworkcore.abstractions.5.0.7.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.7\\microsoft.entityframeworkcore.analyzers.5.0.7.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.6\\microsoft.entityframeworkcore.relational.5.0.6.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
@@ -34,14 +29,13 @@
     "C:\\Users\\Franz\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
-=======
-    "C:\\Users\\Samu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "C:\\Users\\Samu\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\Samu\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\Samu\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
-    "C:\\Users\\Samu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "C:\\Users\\Samu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
->>>>>>> 92ee6b0c62cee96194c1939ef529497cbcbdde94
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

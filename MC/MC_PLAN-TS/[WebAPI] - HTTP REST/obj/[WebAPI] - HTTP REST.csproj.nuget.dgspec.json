@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {}
+    "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {
+    "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
-        "projectName": "[WebAPI] - HTTP REST",
-        "projectPath": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
-        "packagesPath": "C:\\Users\\Samu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\obj\\",
+        "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
+        "projectName": "[ClassLibrary] - Common",
+        "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
+        "packagesPath": "C:\\Users\\Franz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Samu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Franz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,6 +28,78 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
+        "projectName": "[WebAPI] - HTTP REST",
+        "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
+        "packagesPath": "C:\\Users\\Franz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Franz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj": {
+                "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -70,7 +139,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }
