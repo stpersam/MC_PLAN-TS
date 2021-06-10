@@ -1,0 +1,38 @@
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\appsettings.json
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[WebAPI] - HTTP REST.exe
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[WebAPI] - HTTP REST.deps.json
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[WebAPI] - HTTP REST.runtimeconfig.json
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[WebAPI] - HTTP REST.runtimeconfig.dev.json
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[WebAPI] - HTTP REST.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\ref\[WebAPI] - HTTP REST.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[WebAPI] - HTTP REST.pdb
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Npgsql.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[ClassLibrary] - Common.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\[ClassLibrary] - Common.pdb
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.csprojAssemblyReference.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.AssemblyInfoInputs.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.AssemblyInfo.cs
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.csproj.CoreCompileInputs.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\staticwebassets\[WebAPI] - HTTP REST.StaticWebAssets.Manifest.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\staticwebassets\[WebAPI] - HTTP REST.StaticWebAssets.xml
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\scopedcss\bundle\[WebAPI] - HTTP REST.styles.css
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.RazorTargetAssemblyInfo.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.csproj.CopyComplete
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\ref\[WebAPI] - HTTP REST.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.pdb
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.genruntimeconfig.cache

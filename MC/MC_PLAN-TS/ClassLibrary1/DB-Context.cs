@@ -42,43 +42,63 @@ namespace _ClassLibrary____Common
 
     }
 
-    public class DB_Context :DbContext
+    public class DB_Context : DbContext
     {
         public DbSet<Pflanze> TestPflanzen { get; set; }
 
-        public DB_Context() { }
+        public DB_Context()
+        {
+            TestDatenGenerieren();
+
+        }
+
         public DB_Context(bool ensurecreated)
         {
+            TestDatenGenerieren();
             if (ensurecreated)
             {
-                this.Database.EnsureCreated();
+                bool x = this.Database.EnsureCreated();
+                x = x;
             }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder myOptionsBuilder)
         {
-                        base.OnConfiguring(myOptionsBuilder);
+            base.OnConfiguring(myOptionsBuilder);
 
             NpgsqlConnectionStringBuilder dbBuilder = new NpgsqlConnectionStringBuilder();
-            dbBuilder.ApplicationName = "Plan-tsDB.EF";
+            dbBuilder.ApplicationName = "PlantsDB.EF";
             dbBuilder.Database = "postgres";
             dbBuilder.Host = "localhost";
             dbBuilder.Port = 5432;
             dbBuilder.Username = "postgres";
 
             myOptionsBuilder.UseNpgsql(dbBuilder.ToString());
+
+            //this.Database.EnsureCreated();
         }
 
-        public string GetTestPflanzen() {
-            string returnstring = "";
-            lock (TestPflanzen)
+
+        private void TestDatenGenerieren()
+        {
+            for (int i = 0; i < 10; i++)
             {
-                TestPflanzen.OrderBy(p => p.Pflanzenname);
-                foreach (Pflanze s in TestPflanzen)
-                {                   
-                        returnstring += JsonSerializer.Serialize(s) + "|";
-                }
+                Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant" + i };
+                this.TestPflanzen.Add(n);
             }
+        }
+
+        public string GetTestPflanzen()
+        {
+            string returnstring = "";
+
+            //TestPflanzen.OrderBy(p => p.Pflanzenname);
+            foreach (Pflanze s in this.TestPflanzen)
+            {
+                returnstring += JsonSerializer.Serialize(s) + "|";
+                returnstring += "test";
+            }
+
             return returnstring;
         }
     }

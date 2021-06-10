@@ -7,7 +7,7 @@ using _ClassLibrary____Common;
 
 namespace _WebAPI____HTTP_REST
 {
-    public class Plan_tsManager : Controller
+    public class Plan_tsManager 
     {
         private static DB_Context _db;
         public Plan_tsManager()

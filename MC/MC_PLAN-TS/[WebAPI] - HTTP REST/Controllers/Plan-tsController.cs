@@ -10,12 +10,12 @@ namespace _WebAPI____HTTP_REST.Controllers
     [ApiController]
     public class Plan_tsController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         private static Plan_tsManager _manager;
+
+        static Plan_tsController()
+        {
+            _manager = new Plan_tsManager();
+        }
 
         [HttpGet]
         [Route("GetTestPflanzen")]
