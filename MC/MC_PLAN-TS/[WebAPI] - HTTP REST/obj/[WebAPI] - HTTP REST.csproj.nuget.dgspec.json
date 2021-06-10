@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {}
+    "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {
+    "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
+        "projectUniqueName": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
         "projectName": "[WebAPI] - HTTP REST",
-        "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
-        "packagesPath": "C:\\Users\\Franz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\obj\\",
+        "projectPath": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
+        "packagesPath": "C:\\Users\\Samu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Samu\\Source\\Repos\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Franz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Samu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
