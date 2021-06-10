@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\ClassLibrary1.csproj",
-      "projectName": "ClassLibrary1",
-      "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\ClassLibrary1.csproj",
+      "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
+      "projectName": "[ClassLibrary] - Common",
+      "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
       "packagesPath": "C:\\Users\\Franz\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\obj\\",
       "projectStyle": "PackageReference",
