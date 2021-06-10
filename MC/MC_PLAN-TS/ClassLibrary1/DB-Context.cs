@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace [ClassLibrary]_-_Common
+
+namespace _ClassLibrary____Common
 {
     class DB_Context
-{
-}
+    {
+    
+    
+    }
 }
