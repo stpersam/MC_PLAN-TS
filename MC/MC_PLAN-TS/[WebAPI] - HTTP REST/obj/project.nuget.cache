@@ -1,13 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "7IifrtUDg5H9ZmzzWC+E3zNgqg4GKXlXGm4BhkZgBSrfcVOuwOR/mhzjl7l2yLaIZoID5TeDZOjj4fSjThbZIA==",
+  "dgSpecHash": "63D2jlPgWgmiyOQQ596znPSmn0zW5VVgDOrjj8rx0r0h4vyXiAYkx//zhdO2KVEwhssK40TZFX/Fp1sYpKtrQg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\[WebAPI] - HTTP REST.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Franz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.7\\microsoft.entityframeworkcore.5.0.7.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.7\\microsoft.entityframeworkcore.abstractions.5.0.7.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.7\\microsoft.entityframeworkcore.analyzers.5.0.7.nupkg.sha512",
-    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.6\\microsoft.entityframeworkcore.relational.5.0.6.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.7\\microsoft.entityframeworkcore.design.5.0.7.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.7\\microsoft.entityframeworkcore.relational.5.0.7.nupkg.sha512",
+    "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.7\\microsoft.entityframeworkcore.tools.5.0.7.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
@@ -30,12 +34,5 @@
     "C:\\Users\\Franz\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\[WebAPI] - HTTP REST\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

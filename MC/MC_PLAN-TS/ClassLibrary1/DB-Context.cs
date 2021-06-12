@@ -9,7 +9,7 @@ using System.Linq;
 namespace _ClassLibrary____Common
 {
 
-    [Table("user")]
+    [Table("USER")]
     public class User
     {
         [Key]
@@ -22,7 +22,21 @@ namespace _ClassLibrary____Common
 
     }
 
-    [Table("pflanze")]
+
+    [Table("SESSION")]
+    public class Session
+    {
+        [Key]
+        [Column("Session_ID")]
+        public double SessionId { get; set; }
+        [Column("Datum")]
+        public DateTime Datum { get; set; }
+        [Column("Status")]
+        public bool Status { get; set; }
+
+    }
+
+    [Table("PFLANZE")]
     public class Pflanze
     {
         [Key]
@@ -32,8 +46,47 @@ namespace _ClassLibrary____Common
         public string Bild { get; set; }
         [Column("Gegossen")]
         public DateTime Gegossen { get; set; }
-        [Column("Größe")]
+        [Column("Groesse")]
         public double Groesse { get; set; }
+        [Column("User")]
+        public User User { get; set; }
+        [Column("Gruppe")]
+        public Gruppe Gruppe { get; set; }
+        [Column("Pflanzenart")]
+        public Pflanzenart Pflanzenart { get; set; }
+
+    }
+
+    [Table("GRUPPE")]
+    public class Gruppe
+    {
+        [Key]
+        [Column("Gruppen_ID")]
+        public int GruppenID { get; set; }
+        [Column("Gruppenname")]
+        public string Gruppenname { get; set; }
+        [Column("Beschreibung")]
+        public string Beschreibung { get; set; }
+        [Column("User")]
+        public User User { get; set; }
+
+    }
+    [Table("PFLANZENART")]
+    public class Pflanzenart
+    {
+        [Key]
+        [Column("Bezeichnung")]
+        public string Bezeichnung { get; set; }
+        [Column("Lichtbeduerfnisse")]
+        public string Lichtbeduerfnisse { get; set; }
+        [Column("Topfgröße")]
+        public double Topfgröße { get; set; }
+        [Column("Erde")]
+        public string Erde { get; set; }
+        [Column("Wasserzyklus")]
+        public double Wasserzyklus { get; set; }
+        [Column("Luftfeuchtigkeit")]
+        public int Luftfeuchtigkeit { get; set; }
 
     }
 
@@ -48,13 +101,15 @@ namespace _ClassLibrary____Common
         }
 
         public DB_Context(bool ensurecreated)
-        {
-            TestDatenGenerieren();
+        {            
             if (ensurecreated)
             {
                 bool x = this.Database.EnsureCreated();
                 x = x;
+
+                this.SaveChanges();
             }
+            TestDatenGenerieren();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder myOptionsBuilder)

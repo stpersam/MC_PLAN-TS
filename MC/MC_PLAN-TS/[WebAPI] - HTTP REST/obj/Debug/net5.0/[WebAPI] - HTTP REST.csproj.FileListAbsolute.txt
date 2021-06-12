@@ -36,3 +36,5 @@ C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP RE
 C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\ref\[WebAPI] - HTTP REST.dll
 C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.pdb
 C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\obj\Debug\net5.0\[WebAPI] - HTTP REST.genruntimeconfig.cache
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Humanizer.dll
+C:\Users\Franz\source\repos\stpersam\MC_PLAN-TS\MC\MC_PLAN-TS\[WebAPI] - HTTP REST\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
