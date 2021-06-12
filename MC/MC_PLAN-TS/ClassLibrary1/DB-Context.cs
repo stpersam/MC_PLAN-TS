@@ -19,6 +19,8 @@ namespace _ClassLibrary____Common
         public string EMail { get; set; }
         [Column("Passwort")]
         public string Passwort { get; set; }
+        [Column("Session")]
+        public Session Session { get; set; }
 
     }
 
@@ -33,6 +35,7 @@ namespace _ClassLibrary____Common
         public DateTime Datum { get; set; }
         [Column("Status")]
         public bool Status { get; set; }
+
 
     }
 
@@ -93,6 +96,8 @@ namespace _ClassLibrary____Common
     public class DB_Context : DbContext
     {
         public DbSet<Pflanze> TestPflanzen { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
         public DB_Context()
         {
@@ -154,6 +159,35 @@ namespace _ClassLibrary____Common
             }
 
             return returnstring;
+        }
+
+        public double VerifyUser(string user, string password)
+        {            
+            foreach (User u in Users)
+            {
+                if (u.UserId.Equals(user))
+                {
+                    if (u.Passwort.Equals(password)) {
+
+                        if (u.Session == null)
+                        {
+                            u.Session = CreateNewSession();
+                        }
+                        if (u.Session.Datum < DateTime.Now.AddMinutes(-60))
+                        {
+                            u.Session = CreateNewSession();
+                        }
+                        return u.Session.SessionId;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        private Session CreateNewSession()
+        {
+            Random r = new Random();            
+            return new Session() { SessionId = r.Next(0, 5000000), Datum = DateTime.Now, Status = true };
         }
     }
 }

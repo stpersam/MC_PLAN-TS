@@ -15,9 +15,16 @@ namespace _WebAPI____HTTP_REST
             _db = new DB_Context(true);
         }
 
+
         internal string GetTestPflanzen()
         {
             return _db.GetTestPflanzen();
+        }
+
+
+        internal double Login(string user, string password)
+        {
+            return _db.VerifyUser(user, password);
         }
     }
 }
