@@ -95,9 +95,13 @@ namespace _ClassLibrary____Common
 
     public class DB_Context : DbContext
     {
+
         public DbSet<Pflanze> TestPflanzen { get; set; }
+        public DbSet<Pflanze> Pflanzen { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Gruppe> Gruppen { get; set; }
         public DbSet<Session> Sessions { get; set; }
+        public DbSet<Pflanzenart> Pflanzenarten { get; set; }
 
         public DB_Context()
         {
@@ -106,7 +110,7 @@ namespace _ClassLibrary____Common
         }
 
         public DB_Context(bool ensurecreated)
-        {            
+        {
             if (ensurecreated)
             {
                 bool x = this.Database.EnsureCreated();
@@ -162,12 +166,13 @@ namespace _ClassLibrary____Common
         }
 
         public double VerifyUser(string user, string password)
-        {            
+        {
             foreach (User u in Users)
             {
                 if (u.UserId.Equals(user))
                 {
-                    if (u.Passwort.Equals(password)) {
+                    if (u.Passwort.Equals(password))
+                    {
 
                         if (u.Session == null)
                         {
@@ -184,10 +189,69 @@ namespace _ClassLibrary____Common
             return 0;
         }
 
+        public bool VerifyUser(string user, double sessionid)
+        {
+            foreach (User u in Users)
+            {
+                if (u.UserId.Equals(user))
+                {
+                    if (u.Session.SessionId.Equals(sessionid))
+                    {
+
+                        if (u.Session == null)
+                        {
+                            u.Session = CreateNewSession();
+                        }
+                        if (u.Session.Datum < DateTime.Now.AddMinutes(-60))
+                        {
+                            u.Session = CreateNewSession();
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         private Session CreateNewSession()
         {
-            Random r = new Random();            
+            Random r = new Random();
             return new Session() { SessionId = r.Next(0, 5000000), Datum = DateTime.Now, Status = true };
+        }
+
+        public string UserPflanzen(string user, double sessionid)
+        {
+            string returnstring = "";
+
+            if (VerifyUser(user, sessionid))
+            {
+                var plants = Pflanzen
+                    .Where(s => s.User.UserId.Equals(user))
+                    .ToList();
+                var groups = Gruppen
+                    .Where(s => s.User.UserId.Equals(user))
+                    .ToList();
+                foreach (Gruppe g in groups)
+                {
+                    returnstring += JsonSerializer.Serialize(g);
+                }
+                returnstring += "|";
+                foreach (Pflanze p in plants)
+                {
+                    returnstring += JsonSerializer.Serialize(p);
+                }
+            }
+            return returnstring;
+        }
+
+        public string PflanzenArten(string user, double sessionid)
+        {
+            string returnstring = "";
+            foreach (Pflanzenart pa in Pflanzenarten)
+            {
+                returnstring += JsonSerializer.Serialize(pa);
+            }
+            return returnstring;
         }
     }
 }

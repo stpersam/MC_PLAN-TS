@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using _ClassLibrary____Common;
+﻿using _ClassLibrary____Common;
 
 namespace _WebAPI____HTTP_REST
 {
@@ -25,6 +20,18 @@ namespace _WebAPI____HTTP_REST
         internal double Login(string user, string password)
         {
             return _db.VerifyUser(user, password);
+        }
+
+        internal string UserPflanzen(string user, double sessionid)
+        {
+            return _db.UserPflanzen(user, sessionid);
+
+        }
+
+        internal string PflanzenArten(string user, double sessionid)
+        {
+            return _db.PflanzenArten(user, sessionid);
+
         }
     }
 }
