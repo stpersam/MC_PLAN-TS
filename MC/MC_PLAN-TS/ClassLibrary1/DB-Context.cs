@@ -222,20 +222,11 @@ namespace _ClassLibrary____Common
         public string UserPflanzen(string user, double sessionid)
         {
             string returnstring = "";
-
             if (VerifyUser(user, sessionid))
             {
                 var plants = Pflanzen
                     .Where(s => s.User.UserId.Equals(user))
                     .ToList();
-                var groups = Gruppen
-                    .Where(s => s.User.UserId.Equals(user))
-                    .ToList();
-                foreach (Gruppe g in groups)
-                {
-                    returnstring += JsonSerializer.Serialize(g);
-                }
-                returnstring += "|";
                 foreach (Pflanze p in plants)
                 {
                     returnstring += JsonSerializer.Serialize(p);
@@ -253,5 +244,30 @@ namespace _ClassLibrary____Common
             }
             return returnstring;
         }
+
+        public string Initialize(string user, double sessionid)
+        {
+            string returnstring = ""; 
+            returnstring += PflanzenArten(user, sessionid);
+            returnstring += "|";
+            returnstring += UserGruppen(user, sessionid);
+            returnstring += "|";
+            returnstring += UserPflanzen(user, sessionid);
+            return returnstring;
+        }
+
+        public string UserGruppen(string user, double sessionid)
+        {
+            string returnstring = "";
+            var groups = Gruppen
+                   .Where(s => s.User.UserId.Equals(user))
+                   .ToList();
+            foreach (Gruppe g in groups)
+            {
+                returnstring += JsonSerializer.Serialize(g);
+            }
+            return returnstring;
+        }
     }
+}
 }

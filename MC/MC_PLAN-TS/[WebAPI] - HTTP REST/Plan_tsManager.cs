@@ -1,4 +1,5 @@
 ﻿using _ClassLibrary____Common;
+using System;
 
 namespace _WebAPI____HTTP_REST
 {
@@ -32,6 +33,16 @@ namespace _WebAPI____HTTP_REST
         {
             return _db.PflanzenArten(user, sessionid);
 
+        }
+
+        internal string UserGruppen(string user, double sessionid)
+        {
+            return _db.UserGruppen(user, sessionid);
+        }
+
+        internal string Initialize(string user, double sessionid)
+        {
+            return _db.Initialize(user, sessionid);
         }
     }
 }
