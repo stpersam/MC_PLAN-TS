@@ -58,17 +58,17 @@ namespace _ClassLibrary____Common
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { get { return User.Username; } set { Username = User.Username; } }
+        public string Username { get { return User.Username; } set {  } }
         [JsonIgnore]
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
         [Column("Gruppenname")]
-        public string Gruppenname { get { return Gruppe.Gruppenname; } set { Gruppenname = Gruppe.Gruppenname; } }
+        public string Gruppenname { get { return Gruppe.Gruppenname; } set {  } }
         [JsonIgnore]
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
-        public string Pflanzeartname { get { return Pflanzenart.Bezeichnung; } set { Pflanzeartname = Pflanzenart.Bezeichnung; } }
+        public string Pflanzeartname { get { return Pflanzenart.Bezeichnung; } set {  } }
 
     }
 
@@ -86,7 +86,7 @@ namespace _ClassLibrary____Common
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { get { return User.Username; } set { Username = User.Username; } }
+        public string Username { get { return User.Username; } set {  } }
 
     }
     [Table("PFLANZENART")]
@@ -147,7 +147,7 @@ namespace _ClassLibrary____Common
 
         private void TestDatenGenerieren()
         {
-            if (Users.Count<User>() < 1)
+            if (!Users.Any())
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -169,7 +169,7 @@ namespace _ClassLibrary____Common
             SaveChanges();
             var groups = this.Gruppen.ToList();
 
-            if (Pflanzenarten.Count<Pflanzenart>() < 1)
+            if (!Pflanzenarten.Any())
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -180,7 +180,7 @@ namespace _ClassLibrary____Common
             this.SaveChanges();
             var pflanzenarten = Pflanzenarten.ToList();
 
-            if (Pflanzen.Count<Pflanze>() < 1)
+            if (!Pflanzen.Any())
             {
                 for (int k = 0; k < 10; k++)
                 {
