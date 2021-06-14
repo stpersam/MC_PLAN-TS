@@ -180,10 +180,13 @@ namespace _ClassLibrary____Common
 
             if (Pflanzen.Count<Pflanze>() < 1)
             {
-                for (int i = 0; i < 10; i++)
+                for (int k = 0; k < 10; k++)
                 {
-                    Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant " + i, Gruppe = groups[i], Pflanzenart = pflanzenarten[i], User = users[i] };
-                    this.Pflanzen.Add(n);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant " + i, Gruppe = groups[i], Pflanzenart = pflanzenarten[i], User = users[k] };
+                        this.Pflanzen.Add(n);
+                    }
                 }
             }
             this.SaveChanges();
