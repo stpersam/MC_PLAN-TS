@@ -19,8 +19,9 @@ namespace _WebAPI____HTTP_REST.Controllers
 
         [HttpGet]
         [Route("GetTestPflanzen")]
-        public string GetTestPflanzen() => _manager.GetTestPflanzen();
-
+        public string GetTestPflanzen() => _manager.GetTestPflanzen();[HttpPost()]
+        [Route("RegisterUser")]
+        public bool RegisterUser([FromBody] string user, string password, string email) => _manager.RegisterUser(user, password, email);
 
         [HttpPost()]
         [Route("PostPflanzen")]

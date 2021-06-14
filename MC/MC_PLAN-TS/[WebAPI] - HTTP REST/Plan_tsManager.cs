@@ -35,6 +35,11 @@ namespace _WebAPI____HTTP_REST
 
         }
 
+        internal bool RegisterUser(string user, string password, string email)
+        {
+            return _db.RegisterUser(user, password, email);
+        }
+
         internal string UserGruppen(string user, double sessionid)
         {
             return _db.UserGruppen(user, sessionid);

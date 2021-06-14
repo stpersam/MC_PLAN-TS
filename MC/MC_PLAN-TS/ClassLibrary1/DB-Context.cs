@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace _ClassLibrary____Common
 {
@@ -14,7 +15,7 @@ namespace _ClassLibrary____Common
     {
         [Key]
         [Column("Username")]
-        public int UserId { get; set; }
+        public string Username { get; set; }
         [Column("email")]
         public string EMail { get; set; }
         [Column("Passwort")]
@@ -51,27 +52,39 @@ namespace _ClassLibrary____Common
         public DateTime Gegossen { get; set; }
         [Column("Groesse")]
         public double Groesse { get; set; }
+        [JsonIgnore]
         [Column("User")]
         public User User { get; set; }
+        [Column("Username")]
+        public string Username { get { return User.Username; } set { Username = User.Username; } }
+        [JsonIgnore]
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
+        [Column("Gruppenname")]
+        public string Gruppenname { get { return Gruppe.Gruppenname; } set { Gruppenname = Gruppe.Gruppenname; } }
+        [JsonIgnore]
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
+        [Column("Pflanzeartname")]
+        public string Pflanzeartname { get { return Pflanzenart.Bezeichnung; } set { Pflanzeartname = Pflanzenart.Bezeichnung; } }
 
     }
 
     [Table("GRUPPE")]
     public class Gruppe
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("Gruppen_ID")]
         public int GruppenID { get; set; }
         [Column("Gruppenname")]
         public string Gruppenname { get; set; }
         [Column("Beschreibung")]
         public string Beschreibung { get; set; }
+        [JsonIgnore]
         [Column("User")]
         public User User { get; set; }
+        [Column("Username")]
+        public string Username { get { return User.Username; } set { Username = User.Username; } }
 
     }
     [Table("PFLANZENART")]
@@ -103,19 +116,13 @@ namespace _ClassLibrary____Common
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Pflanzenart> Pflanzenarten { get; set; }
 
-        public DB_Context()
-        {
-            TestDatenGenerieren();
-
-        }
+        public DB_Context() { }
 
         public DB_Context(bool ensurecreated)
         {
             if (ensurecreated)
             {
-                bool x = this.Database.EnsureCreated();
-                x = x;
-
+                this.Database.EnsureCreated();
                 this.SaveChanges();
             }
             TestDatenGenerieren();
@@ -133,35 +140,75 @@ namespace _ClassLibrary____Common
             dbBuilder.Username = "postgres";
 
             myOptionsBuilder.UseNpgsql(dbBuilder.ToString());
-
-            //this.Database.EnsureCreated();
         }
 
 
         private void TestDatenGenerieren()
         {
-            if (TestPflanzen.Count<Pflanze>() < 0)
+            if (Users.Count<User>() < 1)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant" + i };
-                    this.TestPflanzen.Add(n);
+                    User n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = null };
+                    this.Users.Add(n);
+                }
+            }
+            this.SaveChanges();
+            var users = Users.ToList();
+
+            if (Gruppen.Count<Gruppe>() < 1)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Gruppe n = new Gruppe() { User = users[i], Beschreibung = "Gruppenbeschreibung " + i, Gruppenname = "Gruppe " + i };
+                    this.Gruppen.Add(n);
+                }
+            }
+            this.SaveChanges();
+            var groups = Gruppen.ToList();
+
+            if (Pflanzenarten.Count<Pflanzenart>() < 1)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Pflanzenart n = new Pflanzenart() { Bezeichnung = "Pflanzenart" + i, Erde = "humos", Lichtbeduerfnisse = "hell", Luftfeuchtigkeit = 50 + i, Topfgröße = 30 + i, Wasserzyklus = i };
+                    this.Pflanzenarten.Add(n);
+                }
+            }
+            this.SaveChanges();
+            var pflanzenarten = Pflanzenarten.ToList();
+
+            if (Pflanzen.Count<Pflanze>() < 1)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant " + i, Gruppe = groups[i], Pflanzenart = pflanzenarten[i], User = users[i] };
+                    this.Pflanzen.Add(n);
                 }
             }
             this.SaveChanges();
         }
 
+        public bool RegisterUser(string username, string password, string email)
+        {
+            //TODO: Abfragen ob strings Rahmenbedingungen entsprechen
+            if (Users.Where(s => s.Username.Equals(username)).Count() <= 0)
+            {
+                Users.Add(new User() { Username = username, EMail = email, Passwort = password });
+                return true;
+            }
+
+            return false;
+        }
+
         public string GetTestPflanzen()
         {
             string returnstring = "";
-
-            TestPflanzen.OrderBy(p => p.Pflanzenname);
-            foreach (Pflanze s in this.TestPflanzen)
+            Pflanzen.OrderBy(p => p.Pflanzenname);
+            foreach (Pflanze s in this.Pflanzen)
             {
-                returnstring += JsonSerializer.Serialize(s) + "|";
-                returnstring += "test";
+                returnstring += JsonSerializer.Serialize(s);
             }
-
             return returnstring;
         }
 
@@ -169,7 +216,7 @@ namespace _ClassLibrary____Common
         {
             foreach (User u in Users)
             {
-                if (u.UserId.Equals(user))
+                if (u.Username.Equals(user))
                 {
                     if (u.Passwort.Equals(password))
                     {
@@ -193,7 +240,7 @@ namespace _ClassLibrary____Common
         {
             foreach (User u in Users)
             {
-                if (u.UserId.Equals(user))
+                if (u.Username.Equals(user))
                 {
                     if (u.Session.SessionId.Equals(sessionid))
                     {
@@ -225,7 +272,7 @@ namespace _ClassLibrary____Common
             if (VerifyUser(user, sessionid))
             {
                 var plants = Pflanzen
-                    .Where(s => s.User.UserId.Equals(user))
+                    .Where(s => s.User.Username.Equals(user))
                     .ToList();
                 foreach (Pflanze p in plants)
                 {
@@ -247,7 +294,7 @@ namespace _ClassLibrary____Common
 
         public string Initialize(string user, double sessionid)
         {
-            string returnstring = ""; 
+            string returnstring = "";
             returnstring += PflanzenArten(user, sessionid);
             returnstring += "|";
             returnstring += UserGruppen(user, sessionid);
@@ -260,7 +307,7 @@ namespace _ClassLibrary____Common
         {
             string returnstring = "";
             var groups = Gruppen
-                   .Where(s => s.User.UserId.Equals(user))
+                   .Where(s => s.User.Username.Equals(user))
                    .ToList();
             foreach (Gruppe g in groups)
             {
