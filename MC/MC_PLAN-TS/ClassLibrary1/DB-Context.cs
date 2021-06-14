@@ -45,7 +45,7 @@ namespace _ClassLibrary____Common
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("Pflanzen_ID")]
-        public int PflanzenID { get; set; }        
+        public int PflanzenID { get; set; }
         [Column("Pflanzenname")]
         public string Pflanzenname { get; set; }
         [Column("Bild")]
@@ -58,17 +58,17 @@ namespace _ClassLibrary____Common
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { get { return User.Username; } set {  } }
+        public string Username { get { return User.Username; } set { } }
         [JsonIgnore]
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
         [Column("Gruppenname")]
-        public string Gruppenname { get { return Gruppe.Gruppenname; } set {  } }
+        public string Gruppenname { get { return Gruppe.Gruppenname; } set { } }
         [JsonIgnore]
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
-        public string Pflanzeartname { get { return Pflanzenart.Bezeichnung; } set {  } }
+        public string Pflanzeartname { get { return Pflanzenart.Bezeichnung; } set { } }
 
     }
 
@@ -86,7 +86,7 @@ namespace _ClassLibrary____Common
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { get { return User.Username; } set {  } }
+        public string Username { get { return User.Username; } set { } }
 
     }
     [Table("PFLANZENART")]
@@ -110,8 +110,6 @@ namespace _ClassLibrary____Common
 
     public class DB_Context : DbContext
     {
-
-        public DbSet<Pflanze> TestPflanzen { get; set; }
         public DbSet<Pflanze> Pflanzen { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Gruppe> Gruppen { get; set; }
