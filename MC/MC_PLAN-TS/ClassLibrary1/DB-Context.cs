@@ -43,7 +43,9 @@ namespace _ClassLibrary____Common
     [Table("PFLANZE")]
     public class Pflanze
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("Pflanzen_ID")]
+        public int PflanzenID { get; set; }        
         [Column("Pflanzenname")]
         public string Pflanzenname { get; set; }
         [Column("Bild")]
@@ -156,7 +158,7 @@ namespace _ClassLibrary____Common
             this.SaveChanges();
             var users = Users.ToList();
 
-            if (Gruppen.Count<Gruppe>() < 1)
+            if (!Gruppen.Any())
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -164,8 +166,8 @@ namespace _ClassLibrary____Common
                     this.Gruppen.Add(n);
                 }
             }
-            this.SaveChanges();
-            var groups = Gruppen.ToList();
+            SaveChanges();
+            var groups = this.Gruppen.ToList();
 
             if (Pflanzenarten.Count<Pflanzenart>() < 1)
             {
