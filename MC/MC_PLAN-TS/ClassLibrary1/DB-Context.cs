@@ -266,7 +266,7 @@ namespace _ClassLibraryCommon
         private Session CreateNewSession()
         {
             Random r = new Random();
-            return new Session() { SessionId = r.Next(0, 5000000), Datum = DateTime.Now, Status = true };
+            return new Session() { SessionId = r.Next(1, 5000000), Datum = DateTime.Now, Status = true };
         }
 
         public string UserPflanzen(string user, double sessionid)
