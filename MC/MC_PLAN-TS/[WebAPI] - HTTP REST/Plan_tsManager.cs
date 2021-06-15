@@ -30,6 +30,12 @@ namespace _WebAPI____HTTP_REST
             return _db.VerifyUser(login.user, login.password);
         }
 
+        internal double Login(LoginData login)
+        {
+            return _db.VerifyUser(login.user, login.password);
+        }
+
+
         internal string UserPflanzen(string user, double sessionid)
         {
             return _db.UserPflanzen(user, sessionid);

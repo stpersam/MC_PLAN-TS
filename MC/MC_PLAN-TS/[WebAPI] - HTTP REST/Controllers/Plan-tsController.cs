@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _ClassLibraryCommon;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,15 +38,9 @@ namespace _WebAPI____HTTP_REST.Controllers
         [Route("Initialize")]
         public string Initialize([FromBody] string user, double sessionid) => _manager.Initialize(user, sessionid);
 
-
-        /*
         [HttpPost()]
         [Route("Login")]
-        public double Login([FromBody] string user, string password) => _manager.Login(user, password);
-        */
-
-        [HttpPost()]
-        [Route("Login")]
-        public double Login([FromBody] string json) => _manager.Login(json);
+        public double Login([FromBody] LoginData json) => _manager.Login(json);
+        
     }
 }
