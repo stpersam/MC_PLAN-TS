@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace _ClassLibrary____Common
+namespace _ClassLibraryCommon
 {
 
     [Table("USER")]

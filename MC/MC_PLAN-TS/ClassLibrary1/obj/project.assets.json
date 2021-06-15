@@ -687,9 +687,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
-      "projectName": "[ClassLibrary] - Common",
-      "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
+      "projectUniqueName": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary]Common.csproj",
+      "projectName": "[ClassLibrary]Common",
+      "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary]Common.csproj",
       "packagesPath": "C:\\Users\\Franz\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\obj\\",
       "projectStyle": "PackageReference",
@@ -751,13 +751,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

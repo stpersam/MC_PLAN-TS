@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PYWQLmz3Bjxh8Ww1kKELjCSznIdVtXRYmjcM9cvgUauNOzu+wxVq4SV65wzvacDHGwRZz/yzj/RiRNO/e+HSvQ==",
+  "dgSpecHash": "/UkLce0uQZSIZtgXKL3nwFqSNwhKfhksu9qkY6OUZIKIB6ZonHRuOgp96+kV7tB8FsVGikIUxyUe8bYGkLu2EQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj",
+  "projectFilePath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary]Common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.7\\microsoft.entityframeworkcore.5.0.7.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.7\\microsoft.entityframeworkcore.abstractions.5.0.7.nupkg.sha512",
@@ -24,12 +24,5 @@
     "C:\\Users\\Franz\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
     "C:\\Users\\Franz\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

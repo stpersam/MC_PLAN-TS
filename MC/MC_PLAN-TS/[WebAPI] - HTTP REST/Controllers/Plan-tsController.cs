@@ -36,8 +36,16 @@ namespace _WebAPI____HTTP_REST.Controllers
         [HttpPost()]
         [Route("Initialize")]
         public string Initialize([FromBody] string user, double sessionid) => _manager.Initialize(user, sessionid);
+
+
+        /*
         [HttpPost()]
         [Route("Login")]
         public double Login([FromBody] string user, string password) => _manager.Login(user, password);
+        */
+
+        [HttpPost()]
+        [Route("Login")]
+        public double Login([FromBody] string json) => _manager.Login(json);
     }
 }

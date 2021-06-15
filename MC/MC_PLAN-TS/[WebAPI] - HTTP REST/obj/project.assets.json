@@ -343,7 +343,7 @@
           "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
-      "[ClassLibrary] - Common/1.0.0": {
+      "[ClassLibrary]Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
@@ -352,10 +352,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.6"
         },
         "compile": {
-          "bin/placeholder/[ClassLibrary] - Common.dll": {}
+          "bin/placeholder/[ClassLibrary]Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/[ClassLibrary] - Common.dll": {}
+          "bin/placeholder/[ClassLibrary]Common.dll": {}
         }
       }
     }
@@ -1040,10 +1040,10 @@
         "version.txt"
       ]
     },
-    "[ClassLibrary] - Common/1.0.0": {
+    "[ClassLibrary]Common/1.0.0": {
       "type": "project",
-      "path": "../ClassLibrary1/[ClassLibrary] - Common.csproj",
-      "msbuildProject": "../ClassLibrary1/[ClassLibrary] - Common.csproj"
+      "path": "../ClassLibrary1/[ClassLibrary]Common.csproj",
+      "msbuildProject": "../ClassLibrary1/[ClassLibrary]Common.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1052,7 +1052,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.7",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.6",
       "Swashbuckle.AspNetCore >= 5.6.3",
-      "[ClassLibrary] - Common >= 1.0.0"
+      "[ClassLibrary]Common >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1082,8 +1082,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj": {
-              "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary] - Common.csproj"
+            "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary]Common.csproj": {
+              "projectPath": "C:\\Users\\Franz\\source\\repos\\stpersam\\MC_PLAN-TS\\MC\\MC_PLAN-TS\\ClassLibrary1\\[ClassLibrary]Common.csproj"
             }
           }
         }

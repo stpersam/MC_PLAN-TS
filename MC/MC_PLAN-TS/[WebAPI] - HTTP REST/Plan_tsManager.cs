@@ -1,5 +1,6 @@
-﻿using _ClassLibrary____Common;
+﻿using _ClassLibraryCommon;
 using System;
+using System.Text.Json;
 
 namespace _WebAPI____HTTP_REST
 {
@@ -21,6 +22,12 @@ namespace _WebAPI____HTTP_REST
         internal double Login(string user, string password)
         {
             return _db.VerifyUser(user, password);
+        }
+
+        internal double Login(string json)
+        {
+            LoginData login = JsonSerializer.Deserialize<LoginData>(json);
+            return _db.VerifyUser(login.user, login.password);
         }
 
         internal string UserPflanzen(string user, double sessionid)
