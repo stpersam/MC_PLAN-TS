@@ -58,9 +58,19 @@ namespace _WebAPI____HTTP_REST
             return _db.UserGruppen(user, sessionid);
         }
 
+        internal string PflanzeHinzufügen(string pflanze, string user, double sessionid)
+        {
+            throw new NotImplementedException();
+        }
+
         internal string Initialize(string user, double sessionid)
         {
             return _db.Initialize(user, sessionid);
+        }
+
+        internal string GruppeHinzufügen(string gruppe, string user, double sessionid)
+        {
+            throw new NotImplementedException();
         }
     }
 }

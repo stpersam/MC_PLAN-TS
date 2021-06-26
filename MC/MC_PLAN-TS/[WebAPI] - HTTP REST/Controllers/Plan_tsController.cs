@@ -27,24 +27,28 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool RegisterUser([FromBody] string user, string password, string email) => _manager.RegisterUser(user, password, email);
 
         [HttpPost()]
-        [Route("PostPflanzen")]
+        [Route("GetUserPflanzen")]
         public string UserPflanzen([FromBody] string user, double sessionid) => _manager.UserPflanzen(user, sessionid);
         [HttpPost()]
-        [Route("PostGruppen")]
+        [Route("GetUserGruppen")]
         public string UserGruppen([FromBody] string user, double sessionid) => _manager.UserGruppen(user, sessionid);
         [HttpPost()]
-        [Route("PostPflanzenArten")]
+        [Route("GetPflanzenArten")]
         public string PflanzenArten([FromBody] string user, double sessionid) => _manager.PflanzenArten(user, sessionid);
+
+        [HttpPost()]
+        [Route("AddPflanze")]
+        public string PflanzeHinzufügen([FromBody] string pflanze, string user, double sessionid) => _manager.PflanzeHinzufügen(pflanze, user, sessionid);
+        [HttpPost()]
+        [Route("AddGruppe")]
+        public string GruppeHinzufügen([FromBody] string gruppe, string user, double sessionid) => _manager.GruppeHinzufügen(gruppe, user, sessionid);
+
+
 
         [HttpPost()]
         [Route("Initialize")]
         public string Initialize([FromBody] string user, double sessionid) => _manager.Initialize(user, sessionid);
-        /*
-        [HttpPost()]
-        [Route("Login")]
-        public double Login([FromBody] String json) => _manager.Login(json);
-
-          */
+   
         [HttpPost()]
         [Route("Login")]
         public double Login([FromBody] LoginData json) => _manager.Login(json);
