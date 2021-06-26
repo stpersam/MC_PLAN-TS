@@ -184,7 +184,7 @@ namespace _ClassLibraryCommon
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant " + i, Gruppe = groups[i], Pflanzenart = pflanzenarten[i], User = users[k] };
+                        Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant " + i, Gruppe = groups[k], Pflanzenart = pflanzenarten[i], User = users[k] };
                         this.Pflanzen.Add(n);
                     }
                 }
