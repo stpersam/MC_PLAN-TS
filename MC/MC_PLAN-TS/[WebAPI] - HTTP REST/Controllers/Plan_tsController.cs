@@ -24,30 +24,30 @@ namespace _WebAPI____HTTP_REST.Controllers
         public string GetTestPflanzen() => _manager.GetTestPflanzen();
         [HttpPost()]
         [Route("RegisterUser")]
-        public bool RegisterUser([FromBody] string user, string password, string email) => _manager.RegisterUser(user, password, email);
+        public bool RegisterUser([FromBody]RegisterUserData registerUserData) => _manager.RegisterUser(registerUserData);
 
         [HttpPost()]
         [Route("GetUserPflanzen")]
-        public string UserPflanzen([FromBody] string user, double sessionid) => _manager.UserPflanzen(user, sessionid);
+        public string UserPflanzen([FromBody] UserSessionData userSessionData) => _manager.UserPflanzen(userSessionData);
         [HttpPost()]
         [Route("GetUserGruppen")]
-        public string UserGruppen([FromBody] string user, double sessionid) => _manager.UserGruppen(user, sessionid);
+        public string UserGruppen([FromBody] UserSessionData userSessionData) => _manager.UserGruppen(userSessionData);
         [HttpPost()]
         [Route("GetPflanzenArten")]
-        public string PflanzenArten([FromBody] string user, double sessionid) => _manager.PflanzenArten(user, sessionid);
+        public string PflanzenArten([FromBody] UserSessionData userSessionData) => _manager.PflanzenArten(userSessionData);
 
         [HttpPost()]
         [Route("AddPflanze")]
-        public string PflanzeHinzufügen([FromBody] string pflanze, string user, double sessionid) => _manager.PflanzeHinzufügen(pflanze, user, sessionid);
+        public string PflanzeHinzufügen([FromBody] ActionMessage action) => _manager.PflanzeHinzufügen(action);
         [HttpPost()]
         [Route("AddGruppe")]
-        public string GruppeHinzufügen([FromBody] string gruppe, string user, double sessionid) => _manager.GruppeHinzufügen(gruppe, user, sessionid);
+        public string GruppeHinzufügen([FromBody] ActionMessage action) => _manager.GruppeHinzufügen(action);
 
 
 
         [HttpPost()]
         [Route("Initialize")]
-        public string Initialize([FromBody] string user, double sessionid) => _manager.Initialize(user, sessionid);
+        public string Initialize([FromBody] UserSessionData userSessionData) => _manager.Initialize(userSessionData);
    
         [HttpPost()]
         [Route("Login")]

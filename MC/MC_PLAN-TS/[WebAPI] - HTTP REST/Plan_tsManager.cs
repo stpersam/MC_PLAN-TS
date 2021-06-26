@@ -18,59 +18,50 @@ namespace _WebAPI____HTTP_REST
             return _db.GetTestPflanzen();
         }
 
-
-        internal double Login(string user, string password)
-        {
-            return _db.VerifyUser(user, password);
-        }
-
-        internal double Login(string json)
-        {
-            LoginData login = JsonSerializer.Deserialize<LoginData>(json);
-            return _db.VerifyUser(login.user, login.password);
-        }
-
         internal double Login(LoginData login)
         {
             return _db.VerifyUser(login.user, login.password);
         }
 
 
-        internal string UserPflanzen(string user, double sessionid)
+        internal string UserPflanzen(UserSessionData usd)
         {
-            return _db.UserPflanzen(user, sessionid);
+            return _db.UserPflanzen(usd.user, usd.sessionid);
 
         }
 
-        internal string PflanzenArten(string user, double sessionid)
+        internal string PflanzenArten(UserSessionData usd)
         {
-            return _db.PflanzenArten(user, sessionid);
+            return _db.PflanzenArten(usd.user, usd.sessionid);
 
         }
 
-        internal bool RegisterUser(string user, string password, string email)
+        internal bool RegisterUser(RegisterUserData rud)
         {
-            return _db.RegisterUser(user, password, email);
+            return _db.RegisterUser(rud.loginData.user, rud.loginData.password, rud.email);
         }
 
-        internal string UserGruppen(string user, double sessionid)
+        internal string UserGruppen(UserSessionData usd)
         {
-            return _db.UserGruppen(user, sessionid);
+            return _db.UserGruppen(usd.user, usd.sessionid);
         }
 
-        internal string PflanzeHinzufügen(string pflanze, string user, double sessionid)
+        internal string Initialize(UserSessionData usd)
+        {
+            return _db.Initialize(usd.user, usd.sessionid);
+        }
+
+        internal string PflanzeHinzufügen(ActionMessage action)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string GruppeHinzufügen(ActionMessage action)
         {
             throw new NotImplementedException();
         }
 
-        internal string Initialize(string user, double sessionid)
-        {
-            return _db.Initialize(user, sessionid);
-        }
+        
 
-        internal string GruppeHinzufügen(string gruppe, string user, double sessionid)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
