@@ -97,8 +97,8 @@ namespace _ClassLibraryCommon
         public string Bezeichnung { get; set; }
         [Column("Lichtbeduerfnisse")]
         public string Lichtbeduerfnisse { get; set; }
-        [Column("Topfgröße")]
-        public double Topfgröße { get; set; }
+        [Column("Topfgroesse")]
+        public double Topfgroesse { get; set; }
         [Column("Erde")]
         public string Erde { get; set; }
         [Column("Wasserzyklus")]
@@ -171,7 +171,7 @@ namespace _ClassLibraryCommon
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    Pflanzenart n = new Pflanzenart() { Bezeichnung = "Pflanzenart" + i, Erde = "humos", Lichtbeduerfnisse = "hell", Luftfeuchtigkeit = 50 + i, Topfgröße = 30 + i, Wasserzyklus = i };
+                    Pflanzenart n = new Pflanzenart() { Bezeichnung = "Pflanzenart" + i, Erde = "humos", Lichtbeduerfnisse = "hell", Luftfeuchtigkeit = 50 + i, Topfgroesse = 30 + i, Wasserzyklus = i };
                     this.Pflanzenarten.Add(n);
                 }
             }
