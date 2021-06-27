@@ -9,7 +9,7 @@ namespace _ClassLibraryCommon
     [Serializable]
     public class ActionMessage
     {
-        public string @string { get; set; }
+        public string actionstring { get; set; }
         public LoginData loginData { get; set; }
         
     }

@@ -197,13 +197,18 @@ namespace _ClassLibraryCommon
         public bool RegisterUser(string username, string password, string email)
         {
             //TODO: Abfragen ob strings Rahmenbedingungen entsprechen
-            if (Users.Where(s => s.Username.Equals(username)).Count() <= 0)
+            if (Users.Where(s => s.Username.Equals(username)).Count() > 0)
+            {
+                return false;
+            }
+            else
             {
                 Users.Add(new User() { Username = username, EMail = email, Passwort = password });
+                this.SaveChanges();
                 return true;
             }
-
             return false;
+
         }
 
         public string GetTestPflanzen()
@@ -234,6 +239,7 @@ namespace _ClassLibraryCommon
                         {
                             u.Session = CreateNewSession();
                         }
+                        this.SaveChanges();
                         return u.Session.SessionId;
                     }
                 }
@@ -258,6 +264,7 @@ namespace _ClassLibraryCommon
                         {
                             u.Session = CreateNewSession();
                         }
+                        this.SaveChanges();
                         return true;
                     }
                 }
@@ -268,7 +275,9 @@ namespace _ClassLibraryCommon
         private Session CreateNewSession()
         {
             Random r = new Random();
-            return new Session() { SessionId = r.Next(1, 5000000), Datum = DateTime.Now, Status = true };
+            Session news = new Session() { SessionId = r.Next(1, 5000000), Datum = DateTime.Now, Status = true };
+            this.SaveChanges();
+            return news;
         }
 
         public string UserPflanzen(string user, double sessionid)
@@ -321,20 +330,27 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public void ChangePassword(string user, string password, string newpassword)
+        public bool ChangePassword(string user, string password, string newpassword)
         {
             if (VerifyUser(user, password) > 0)
             {
                 Users.Find(user).Passwort = newpassword;
+                this.SaveChanges();
+                return true;
             }
-        }
+            return false;
+                    }
 
-        public void DeleteUser(LoginData loginAdmin, FullUserData userData)
+        public bool DeleteUser(LoginData loginAdmin, FullUserData userData)
         {
             if (VerifyUser(loginAdmin.user, loginAdmin.password) > 0)
             {
                 Users.Remove(Users.Find(userData.loginData.user));
+                this.SaveChanges();
+                return true;
             }
+            return false;
+            
         }
 
         public bool PflanzeHinzufügen(LoginData loginData, string json)
@@ -346,13 +362,16 @@ namespace _ClassLibraryCommon
                 {
                     newpflanze = JsonSerializer.Deserialize<Pflanze>(json);
                 }
-                catch (Exception e) {
+                catch (Exception e)
+                {
                     return false;
                 }
                 Pflanzen.Add(newpflanze);
+                this.SaveChanges();
                 return true;
             }
             return false;
+            
         }
 
         public bool GruppeHinzufügen(LoginData loginData, string json)
@@ -369,9 +388,11 @@ namespace _ClassLibraryCommon
                     return false;
                 }
                 Gruppen.Add(newgruppe);
+                this.SaveChanges();
                 return true;
             }
             return false;
+            
         }
     }
 }

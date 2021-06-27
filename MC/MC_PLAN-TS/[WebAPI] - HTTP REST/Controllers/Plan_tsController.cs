@@ -30,12 +30,12 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool RegisterUser([FromBody]FullUserData registerUserData) => _manager.RegisterUser(registerUserData);
         [HttpPost()]
         [Route("ChangePassword")]
-        public void ChangePassword([FromBody] ActionMessage action) => _manager.ChangePassword(action);
+        public bool ChangePassword([FromBody] ActionMessage action) => _manager.ChangePassword(action);
 
 
         [HttpPost()]
         [Route("DeleteUser")]
-        public void DeleteUser([FromBody] AdminAction action) => _manager.DeleteUser(action);
+        public bool DeleteUser([FromBody] AdminAction action) => _manager.DeleteUser(action);
 
         [HttpPost()]
         [Route("GetUserPflanzen")]
