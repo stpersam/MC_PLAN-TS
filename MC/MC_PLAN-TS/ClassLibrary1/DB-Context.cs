@@ -22,6 +22,8 @@ namespace _ClassLibraryCommon
         public string Passwort { get; set; }
         [Column("Session")]
         public Session Session { get; set; }
+        [Column("Privileges")]
+        public string Privileges { get; set; }
 
     }
 
@@ -317,6 +319,59 @@ namespace _ClassLibraryCommon
                 returnstring += JsonSerializer.Serialize(g);
             }
             return returnstring;
+        }
+
+        public void ChangePassword(string user, string password, string newpassword)
+        {
+            if (VerifyUser(user, password) > 0)
+            {
+                Users.Find(user).Passwort = newpassword;
+            }
+        }
+
+        public void DeleteUser(LoginData loginAdmin, FullUserData userData)
+        {
+            if (VerifyUser(loginAdmin.user, loginAdmin.password) > 0)
+            {
+                Users.Remove(Users.Find(userData.loginData.user));
+            }
+        }
+
+        public bool PflanzeHinzufügen(LoginData loginData, string json)
+        {
+            if (VerifyUser(loginData.user, loginData.password) > 0)
+            {
+                Pflanze newpflanze = null;
+                try
+                {
+                    newpflanze = JsonSerializer.Deserialize<Pflanze>(json);
+                }
+                catch (Exception e) {
+                    return false;
+                }
+                Pflanzen.Add(newpflanze);
+                return true;
+            }
+            return false;
+        }
+
+        public bool GruppeHinzufügen(LoginData loginData, string json)
+        {
+            if (VerifyUser(loginData.user, loginData.password) > 0)
+            {
+                Gruppe newgruppe = null;
+                try
+                {
+                    newgruppe = JsonSerializer.Deserialize<Gruppe>(json);
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                Gruppen.Add(newgruppe);
+                return true;
+            }
+            return false;
         }
     }
 }

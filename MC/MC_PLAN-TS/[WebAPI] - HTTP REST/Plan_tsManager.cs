@@ -36,9 +36,19 @@ namespace _WebAPI____HTTP_REST
 
         }
 
-        internal bool RegisterUser(RegisterUserData rud)
+        internal bool RegisterUser(FullUserData rud)
         {
             return _db.RegisterUser(rud.loginData.user, rud.loginData.password, rud.email);
+        }
+
+        internal void ChangePassword(ActionMessage action)
+        {
+            _db.ChangePassword(action.loginData.user, action.loginData.password, action.@string);
+        }
+
+        internal void DeleteUser(AdminAction action)
+        {
+            _db.DeleteUser(action.loginAdmin, action.userData);
         }
 
         internal string UserGruppen(UserSessionData usd)
@@ -51,14 +61,14 @@ namespace _WebAPI____HTTP_REST
             return _db.Initialize(usd.user, usd.sessionid);
         }
 
-        internal string PflanzeHinzufügen(ActionMessage action)
+        internal bool PflanzeHinzufügen(ActionMessage action)
         {
-            throw new NotImplementedException();
+            return _db.PflanzeHinzufügen(action.loginData, action.@string);
         }
 
-        internal string GruppeHinzufügen(ActionMessage action)
+        internal bool GruppeHinzufügen(ActionMessage action)
         {
-            throw new NotImplementedException();
+            return _db.GruppeHinzufügen(action.loginData, action.@string);
         }
 
         

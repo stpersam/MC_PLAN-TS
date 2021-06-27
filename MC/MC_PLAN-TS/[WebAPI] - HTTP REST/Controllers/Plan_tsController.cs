@@ -19,12 +19,23 @@ namespace _WebAPI____HTTP_REST.Controllers
             _manager = new Plan_tsManager();
         }
 
+
+
+
         [HttpGet]
         [Route("GetTestPflanzen")]
         public string GetTestPflanzen() => _manager.GetTestPflanzen();
         [HttpPost()]
         [Route("RegisterUser")]
-        public bool RegisterUser([FromBody]RegisterUserData registerUserData) => _manager.RegisterUser(registerUserData);
+        public bool RegisterUser([FromBody]FullUserData registerUserData) => _manager.RegisterUser(registerUserData);
+        [HttpPost()]
+        [Route("ChangePassword")]
+        public void ChangePassword([FromBody] ActionMessage action) => _manager.ChangePassword(action);
+
+
+        [HttpPost()]
+        [Route("DeleteUser")]
+        public void DeleteUser([FromBody] AdminAction action) => _manager.DeleteUser(action);
 
         [HttpPost()]
         [Route("GetUserPflanzen")]
@@ -38,10 +49,10 @@ namespace _WebAPI____HTTP_REST.Controllers
 
         [HttpPost()]
         [Route("AddPflanze")]
-        public string PflanzeHinzufügen([FromBody] ActionMessage action) => _manager.PflanzeHinzufügen(action);
+        public bool PflanzeHinzufügen([FromBody] ActionMessage action) => _manager.PflanzeHinzufügen(action);
         [HttpPost()]
         [Route("AddGruppe")]
-        public string GruppeHinzufügen([FromBody] ActionMessage action) => _manager.GruppeHinzufügen(action);
+        public bool GruppeHinzufügen([FromBody] ActionMessage action) => _manager.GruppeHinzufügen(action);
 
 
 
@@ -51,7 +62,7 @@ namespace _WebAPI____HTTP_REST.Controllers
    
         [HttpPost()]
         [Route("Login")]
-        public double Login([FromBody] LoginData json) => _manager.Login(json);
+        public double Login([FromBody] LoginData loginData) => _manager.Login(loginData);
       
     }
 }

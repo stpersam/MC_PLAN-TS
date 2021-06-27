@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace _ClassLibraryCommon
 {
     [Serializable]
-    public class RegisterUserData
+    public class FullUserData
     {
         public LoginData loginData { get; set; }
         public string email { get; set; }

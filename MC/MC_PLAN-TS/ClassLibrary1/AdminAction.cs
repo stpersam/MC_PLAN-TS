@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace _ClassLibraryCommon
 {
     [Serializable]
-    public class ActionMessage
+    public class AdminAction
     {
-        public string @string { get; set; }
-        public LoginData loginData { get; set; }
-        
+        public LoginData loginAdmin { get; set; }
+        public FullUserData userData { get; set; }
+        public string action { get; set; }
     }
 }
