@@ -51,6 +51,11 @@ namespace _WebAPI____HTTP_REST
            return _db.DeleteUser(action.loginAdmin, action.userData);
         }
 
+        internal string GetUsers(UserSessionData USD)
+        {
+            return _db.GetUsers(USD.user, USD.sessionid);
+        }
+
         internal string UserGruppen(UserSessionData usd)
         {
             return _db.UserGruppen(usd.user, usd.sessionid);

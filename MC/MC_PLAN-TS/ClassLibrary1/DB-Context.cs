@@ -20,8 +20,23 @@ namespace _ClassLibraryCommon
         public string EMail { get; set; }
         [Column("Passwort")]
         public string Passwort { get; set; }
+        [JsonIgnore]
         [Column("Session")]
         public Session Session { get; set; }
+        /*
+          [Column("Session_ID")]
+         public double SessionId
+         {
+             get
+             {
+                 if (Session != null)
+                     return Session.SessionId;
+                 else 
+                     return 0;
+             }
+             set { }
+         }
+         */
         [Column("Privileges")]
         public string Privileges { get; set; }
 
@@ -151,7 +166,15 @@ namespace _ClassLibraryCommon
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    User n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = null };
+                    User n = null;
+                    if (i == 0)
+                    {
+                        n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = null, Privileges = "Administrator" };
+                    }
+                    else
+                    {
+                        n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = null, Privileges = "User" };
+                    }
                     this.Users.Add(n);
                 }
             }
@@ -224,27 +247,40 @@ namespace _ClassLibraryCommon
 
         public double VerifyUser(string user, string password)
         {
+            double session = 0;
             foreach (User u in Users)
             {
                 if (u.Username.Equals(user))
                 {
                     if (u.Passwort.Equals(password))
                     {
-
-                        if (u.Session == null)
+                        if (u.Session != null)
                         {
-                            u.Session = CreateNewSession();
+                            if (u.Session.Datum > DateTime.Now.AddMinutes(-60))
+                            {
+                                session = u.Session.SessionId;
+                                break;
+                            }
                         }
-                        if (u.Session.Datum < DateTime.Now.AddMinutes(-60))
+                        else
                         {
-                            u.Session = CreateNewSession();
+                            if (u.Privileges.Equals("Administrator"))
+                            {
+                                u.Session = CreateNewSession(true);
+                            }
+                            else
+                            {
+                                u.Session = CreateNewSession(false);
+                            }
+                            session = u.Session.SessionId;
+                            break;
                         }
-                        this.SaveChanges();
-                        return u.Session.SessionId;
                     }
+
                 }
             }
-            return 0;
+            this.SaveChanges();
+            return session;
         }
 
         public bool VerifyUser(string user, double sessionid)
@@ -255,16 +291,6 @@ namespace _ClassLibraryCommon
                 {
                     if (u.Session.SessionId.Equals(sessionid))
                     {
-
-                        if (u.Session == null)
-                        {
-                            u.Session = CreateNewSession();
-                        }
-                        if (u.Session.Datum < DateTime.Now.AddMinutes(-60))
-                        {
-                            u.Session = CreateNewSession();
-                        }
-                        this.SaveChanges();
                         return true;
                     }
                 }
@@ -272,10 +298,18 @@ namespace _ClassLibraryCommon
             return false;
         }
 
-        private Session CreateNewSession()
+        private Session CreateNewSession(bool admin)
         {
             Random r = new Random();
-            Session news = new Session() { SessionId = r.Next(1, 5000000), Datum = DateTime.Now, Status = true };
+            Session news = null;
+            if (admin)
+            {
+                news = new Session() { SessionId = r.Next(1, 9999), Datum = DateTime.Now, Status = true };
+            }
+            else
+            {
+                news = new Session() { SessionId = r.Next(10000, 500000), Datum = DateTime.Now, Status = true };
+            }
             this.SaveChanges();
             return news;
         }
@@ -339,18 +373,20 @@ namespace _ClassLibraryCommon
                 return true;
             }
             return false;
-                    }
+        }
 
         public bool DeleteUser(LoginData loginAdmin, FullUserData userData)
         {
             if (VerifyUser(loginAdmin.user, loginAdmin.password) > 0)
             {
-                Users.Remove(Users.Find(userData.loginData.user));
-                this.SaveChanges();
-                return true;
+                if (Users.Find(loginAdmin.user).Privileges.Equals("Administrator") | loginAdmin.user.Equals(userData.loginData.user))
+                {
+                    Users.Remove(Users.Find(userData.loginData.user));
+                    this.SaveChanges();
+                    return true;
+                }
             }
             return false;
-            
         }
 
         public bool PflanzeHinzufügen(LoginData loginData, string json)
@@ -371,7 +407,7 @@ namespace _ClassLibraryCommon
                 return true;
             }
             return false;
-            
+
         }
 
         public bool GruppeHinzufügen(LoginData loginData, string json)
@@ -392,7 +428,21 @@ namespace _ClassLibraryCommon
                 return true;
             }
             return false;
-            
+
+        }
+
+        public string GetUsers(string user, double sessionid)
+        {
+            if (VerifyUser(user, sessionid) && Users.Find(user).Privileges.Equals("Administrator"))
+            {
+                string returnstring = "";
+                foreach (User u in Users)
+                {
+                    returnstring += JsonSerializer.Serialize(u);
+                }
+                return returnstring;
+            }
+            return null;
         }
     }
 }

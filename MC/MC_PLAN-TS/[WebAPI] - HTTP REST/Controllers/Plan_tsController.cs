@@ -38,6 +38,10 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool DeleteUser([FromBody] AdminAction action) => _manager.DeleteUser(action);
 
         [HttpPost()]
+        [Route("GetUsers")]
+        public string GetUsers([FromBody] UserSessionData usd) => _manager.GetUsers(usd);
+
+        [HttpPost()]
         [Route("GetUserPflanzen")]
         public string UserPflanzen([FromBody] UserSessionData userSessionData) => _manager.UserPflanzen(userSessionData);
         [HttpPost()]
