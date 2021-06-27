@@ -23,20 +23,19 @@ namespace _ClassLibraryCommon
         [JsonIgnore]
         [Column("Session")]
         public Session Session { get; set; }
-        /*
-          [Column("Session_ID")]
-         public double SessionId
-         {
-             get
-             {
-                 if (Session != null)
-                     return Session.SessionId;
-                 else 
-                     return 0;
-             }
-             set { }
-         }
-         */
+        [Column("Session_ID")]
+        public double SessionId
+        {            get
+            {
+                if (Session != null)
+                    return Session.SessionId;
+                else
+                    return 0;
+            }
+            set { }
+
+        }
+
         [Column("Privileges")]
         public string Privileges { get; set; }
 
@@ -162,6 +161,7 @@ namespace _ClassLibraryCommon
 
         private void TestDatenGenerieren()
         {
+            Session deadsession = new Session() { SessionId = 0, Status = false, Datum = DateTime.Now };
             if (!Users.Any())
             {
                 for (int i = 0; i < 10; i++)
@@ -169,11 +169,11 @@ namespace _ClassLibraryCommon
                     User n = null;
                     if (i == 0)
                     {
-                        n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = null, Privileges = "Administrator" };
+                        n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = deadsession, Privileges = "Administrator" };
                     }
                     else
                     {
-                        n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = null, Privileges = "User" };
+                        n = new User() { Username = "User" + i, EMail = "user" + i + "@mail.com", Passwort = "password" + i, Session = deadsession, Privileges = "User" };
                     }
                     this.Users.Add(n);
                 }
@@ -289,6 +289,10 @@ namespace _ClassLibraryCommon
             {
                 if (u.Username.Equals(user))
                 {
+                    if (u.Session == null) {
+                        return false;
+
+                    }
                     if (u.Session.SessionId.Equals(sessionid))
                     {
                         return true;
@@ -438,8 +442,9 @@ namespace _ClassLibraryCommon
                 string returnstring = "";
                 foreach (User u in Users)
                 {
-                    returnstring += JsonSerializer.Serialize(u);
+                    returnstring += JsonSerializer.Serialize(u) + "|";                    
                 }
+                returnstring = returnstring.Remove(returnstring.Length - 1);
                 return returnstring;
             }
             return null;
