@@ -86,7 +86,7 @@ namespace _ClassLibraryCommon
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
         public string Pflanzeartname
-        { get { if (User != null) return Pflanzenart.Bezeichnung; else return ""; } set { }}
+        { get { if (User != null) return Pflanzenart.Bezeichnung; else return ""; } set { } }
     }
 
     [Table("GRUPPE")]
@@ -103,13 +103,16 @@ namespace _ClassLibraryCommon
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { 
-            get {
+        public string Username
+        {
+            get
+            {
                 if (User != null)
                     return User.Username;
-                else 
+                else
                     return "";
-            } set { }
+            }
+            set { }
         }
 
     }
@@ -215,11 +218,11 @@ namespace _ClassLibraryCommon
 
             if (!Pflanzen.Any())
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     for (int k = 0; k < 10; k++)
                     {
-                        for (int i = 0; i < 10; i++)
+                        for (int i = 0; i < r.Next(3, 9); i++)
                         {
                             Pflanze n = new Pflanze()
                             {
@@ -283,6 +286,7 @@ namespace _ClassLibraryCommon
                                 session = u.Session.SessionId;
                                 break;
                             }
+
                         }
                         else
                         {
@@ -298,7 +302,6 @@ namespace _ClassLibraryCommon
                             break;
                         }
                     }
-
                 }
             }
             this.SaveChanges();
