@@ -80,13 +80,12 @@ namespace _ClassLibraryCommon
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
         [Column("Gruppenname")]
-        public string Gruppenname { get { return Gruppe.Gruppenname; } set { } }
+        public string Gruppenname { get { if (User != null) return Gruppe.Gruppenname; else return ""; } set { } }
         [JsonIgnore]
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
-        public string Pflanzeartname
-        { get { if (User != null) return Pflanzenart.Bezeichnung; else return ""; } set { } }
+        public string Pflanzeartname { get { if (User != null) return Pflanzenart.Bezeichnung; else return ""; } set { } }
     }
 
     [Table("GRUPPE")]
@@ -172,6 +171,7 @@ namespace _ClassLibraryCommon
 
         private void TestDatenGenerieren()
         {
+            Random r = new Random();
             Session deadsession = new Session() { SessionId = 0, Status = false, Datum = DateTime.Now };
             if (!Users.Any())
             {
@@ -194,9 +194,9 @@ namespace _ClassLibraryCommon
 
             if (!Gruppen.Any())
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 30; i++)
                 {
-                    Gruppe n = new Gruppe() { User = users[i], Beschreibung = "Gruppenbeschreibung " + i, Gruppenname = "Gruppe " + i };
+                    Gruppe n = new Gruppe() { User = users[r.Next(0, 9)], Beschreibung = "Gruppenbeschreibung " + i, Gruppenname = "Gruppe " + i };
                     this.Gruppen.Add(n);
                 }
             }
@@ -205,7 +205,7 @@ namespace _ClassLibraryCommon
 
             if (!Pflanzenarten.Any())
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 15; i++)
                 {
                     Pflanzenart n = new Pflanzenart() { Bezeichnung = "Pflanzenart" + i, Erde = "humos", Lichtbeduerfnisse = "hell", Luftfeuchtigkeit = 50 + i, Topfgroesse = 30 + i, Wasserzyklus = i };
                     this.Pflanzenarten.Add(n);
@@ -214,28 +214,25 @@ namespace _ClassLibraryCommon
             this.SaveChanges();
             var pflanzenarten = Pflanzenarten.ToList();
 
-            Random r = new Random();
+
 
             if (!Pflanzen.Any())
             {
-                for (int j = 0; j < 3; j++)
+                for (int o = 0; o < 50; o++)
                 {
                     for (int k = 0; k < 10; k++)
                     {
-                        for (int i = 0; i < r.Next(3, 9); i++)
+                        Pflanze n = new Pflanze()
                         {
-                            Pflanze n = new Pflanze()
-                            {
-                                Bild = "url" + i,
-                                Gegossen = DateTime.Now,
-                                Groesse = 55 + i,
-                                Pflanzenname = "Plant " + i,
-                                Gruppe = groups[r.Next(0, 9)],
-                                Pflanzenart = pflanzenarten[r.Next(0, 9)],
-                                User = users[k]
-                            };
-                            this.Pflanzen.Add(n);
-                        }
+                            Bild = "url" + r.Next(5,500),
+                            Gegossen = DateTime.Now,
+                            Groesse = r.Next(2,50),
+                            Pflanzenname = "Meine Pflanze" + r.Next(1,100),
+                            Gruppe = groups[r.Next(0, 29)],
+                            Pflanzenart = pflanzenarten[r.Next(0, 9)],
+                            User = users[k]
+                        };
+                        this.Pflanzen.Add(n);
                     }
                 }
             }
