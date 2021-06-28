@@ -25,7 +25,8 @@ namespace _ClassLibraryCommon
         public Session Session { get; set; }
         [Column("Session_ID")]
         public double SessionId
-        {            get
+        {
+            get
             {
                 if (Session != null)
                     return Session.SessionId;
@@ -84,8 +85,8 @@ namespace _ClassLibraryCommon
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
-        public string Pflanzeartname { get { return Pflanzenart.Bezeichnung; } set { } }
-
+        public string Pflanzeartname
+        { get { if (User != null) return Pflanzenart.Bezeichnung; else return ""; } set { }}
     }
 
     [Table("GRUPPE")]
@@ -102,7 +103,14 @@ namespace _ClassLibraryCommon
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { get { return User.Username; } set { } }
+        public string Username { 
+            get {
+                if (User != null)
+                    return User.Username;
+                else 
+                    return "";
+            } set { }
+        }
 
     }
     [Table("PFLANZENART")]
@@ -203,14 +211,28 @@ namespace _ClassLibraryCommon
             this.SaveChanges();
             var pflanzenarten = Pflanzenarten.ToList();
 
+            Random r = new Random();
+
             if (!Pflanzen.Any())
             {
-                for (int k = 0; k < 10; k++)
+                for (int j = 0; j < 5; j++)
                 {
-                    for (int i = 0; i < 10; i++)
+                    for (int k = 0; k < 10; k++)
                     {
-                        Pflanze n = new Pflanze() { Bild = "url" + i, Gegossen = DateTime.Now, Groesse = 55 + i, Pflanzenname = "Plant " + i, Gruppe = groups[k], Pflanzenart = pflanzenarten[i], User = users[k] };
-                        this.Pflanzen.Add(n);
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Pflanze n = new Pflanze()
+                            {
+                                Bild = "url" + i,
+                                Gegossen = DateTime.Now,
+                                Groesse = 55 + i,
+                                Pflanzenname = "Plant " + i,
+                                Gruppe = groups[r.Next(0, 9)],
+                                Pflanzenart = pflanzenarten[r.Next(0, 9)],
+                                User = users[k]
+                            };
+                            this.Pflanzen.Add(n);
+                        }
                     }
                 }
             }
@@ -289,7 +311,8 @@ namespace _ClassLibraryCommon
             {
                 if (u.Username.Equals(user))
                 {
-                    if (u.Session == null) {
+                    if (u.Session == null)
+                    {
                         return false;
 
                     }
@@ -379,16 +402,13 @@ namespace _ClassLibraryCommon
             return false;
         }
 
-        public bool DeleteUser(LoginData loginAdmin, FullUserData userData)
+        public bool DeleteUser(string user, string password, string action)
         {
-            if (VerifyUser(loginAdmin.user, loginAdmin.password) > 0)
+            if (action.Equals("loeschen"))
             {
-                if (Users.Find(loginAdmin.user).Privileges.Equals("Administrator") | loginAdmin.user.Equals(userData.loginData.user))
-                {
-                    Users.Remove(Users.Find(userData.loginData.user));
-                    this.SaveChanges();
-                    return true;
-                }
+                User u = Users.Find(user);
+                Users.Remove(u);
+                this.SaveChanges();
             }
             return false;
         }
@@ -442,7 +462,7 @@ namespace _ClassLibraryCommon
                 string returnstring = "";
                 foreach (User u in Users)
                 {
-                    returnstring += JsonSerializer.Serialize(u) + "|";                    
+                    returnstring += JsonSerializer.Serialize(u) + "|";
                 }
                 returnstring = returnstring.Remove(returnstring.Length - 1);
                 return returnstring;

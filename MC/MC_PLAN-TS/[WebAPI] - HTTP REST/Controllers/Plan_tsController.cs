@@ -32,10 +32,9 @@ namespace _WebAPI____HTTP_REST.Controllers
         [Route("ChangePassword")]
         public bool ChangePassword([FromBody] ActionMessage action) => _manager.ChangePassword(action);
 
-
         [HttpPost()]
         [Route("DeleteUser")]
-        public bool DeleteUser([FromBody] AdminAction action) => _manager.DeleteUser(action);
+        public bool DeleteUser([FromBody] ActionMessage action) => _manager.DeleteUser(action);
 
         [HttpPost()]
         [Route("GetUsers")]

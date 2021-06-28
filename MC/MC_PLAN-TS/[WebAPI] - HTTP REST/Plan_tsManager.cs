@@ -46,9 +46,9 @@ namespace _WebAPI____HTTP_REST
            return _db.ChangePassword(action.loginData.user, action.loginData.password, action.actionstring);
         }
 
-        internal bool DeleteUser(AdminAction action)
+        internal bool DeleteUser(ActionMessage action)
         {
-           return _db.DeleteUser(action.loginAdmin, action.userData);
+           return _db.DeleteUser(action.loginData.user, action.loginData.password, action.actionstring);
         }
 
         internal string GetUsers(UserSessionData USD)
