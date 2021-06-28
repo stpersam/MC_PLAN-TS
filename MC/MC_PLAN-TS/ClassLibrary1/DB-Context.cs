@@ -286,7 +286,6 @@ namespace _ClassLibraryCommon
                                 session = u.Session.SessionId;
                                 break;
                             }
-
                         }
                         else
                         {
