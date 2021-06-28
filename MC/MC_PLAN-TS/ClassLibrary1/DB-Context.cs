@@ -73,7 +73,7 @@ namespace _ClassLibraryCommon
         public double Groesse { get; set; }
         [JsonIgnore]
         [Column("User")]
-        public User User { get; set; }
+        public User? User { get; set; }
         [Column("Username")]
         public string Username { get { if (User != null) return User.Username; else return ""; } set { } }
         [JsonIgnore]
@@ -304,7 +304,7 @@ namespace _ClassLibraryCommon
             return session;
         }
 
-        public bool VerifyUser(string user, int sessionid)
+        public bool VerifyUser(string user, double sessionid)
         {
             foreach (User u in Users)
             {
@@ -340,7 +340,7 @@ namespace _ClassLibraryCommon
             return news;
         }
 
-        public string UserPflanzen(string user, int sessionid)
+        public string UserPflanzen(string user, double sessionid)
         {
             string returnstring = "";
             if (VerifyUser(user, sessionid))
@@ -356,7 +356,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string PflanzenArten(string user, int sessionid)
+        public string PflanzenArten(string user, double sessionid)
         {
             string returnstring = "";
             foreach (Pflanzenart pa in Pflanzenarten)
@@ -366,7 +366,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string Initialize(string user, int sessionid)
+        public string Initialize(string user, double sessionid)
         {
             string returnstring = "";
             returnstring += PflanzenArten(user, sessionid);
@@ -468,7 +468,7 @@ namespace _ClassLibraryCommon
 
         }
 
-        public string GetUsers(string user, int sessionid)
+        public string GetUsers(string user, double sessionid)
         {
             if (VerifyUser(user, sessionid) && Users.Find(user).Privileges.Equals("Administrator"))
             {
@@ -498,12 +498,40 @@ namespace _ClassLibraryCommon
 
         public bool GruppeBearbeiten(LoginData loginData, string actionstring)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Gruppe g = JsonSerializer.Deserialize<Gruppe>(actionstring);
+                Gruppen.Find(g.GruppenID).Gruppenname = g.Gruppenname;
+                Gruppen.Find(g.GruppenID).Beschreibung = g.Beschreibung;
+                Gruppen.Find(g.GruppenID).User = Users.Find(g.Username);
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool PflanzeBearbeiten(LoginData loginData, string actionstring)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Pflanze p = JsonSerializer.Deserialize<Pflanze>(actionstring);                
+                Pflanzen.Find(p.PflanzenID).Bild = p.Bild;
+                Pflanzen.Find(p.PflanzenID).Gegossen = p.Gegossen;
+                Pflanzen.Find(p.PflanzenID).Groesse = p.Groesse;
+                Pflanzen.Find(p.PflanzenID).Gruppe = p.Gruppe;
+                Pflanzen.Find(p.PflanzenID).Pflanzenart = p.Pflanzenart;
+                Pflanzen.Find(p.PflanzenID).Pflanzenname = p.Pflanzenname;
+                Pflanzen.Find(p.PflanzenID).User = p.User;                
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool GruppeLöschen(LoginData loginData, string actionstring)
@@ -530,7 +558,17 @@ namespace _ClassLibraryCommon
 
         public bool PflanzeLöschen(LoginData loginData, string actionstring)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Pflanze p = JsonSerializer.Deserialize<Pflanze>(actionstring);
+                Pflanzen.Remove(p);
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
