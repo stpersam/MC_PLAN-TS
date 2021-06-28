@@ -19,27 +19,21 @@ namespace _WebAPI____HTTP_REST.Controllers
             _manager = new Plan_tsManager();
         }
 
+        //Login
+        [HttpPost()]
+        [Route("Login")]
+        public int Login([FromBody] LoginData loginData) => _manager.Login(loginData);
 
-
-
+        //GET DATA
+        [HttpPost()]
+        [Route("Initialize")]
+        public string Initialize([FromBody] UserSessionData userSessionData) => _manager.Initialize(userSessionData);
         [HttpGet]
         [Route("GetTestPflanzen")]
-        public string GetTestPflanzen() => _manager.GetTestPflanzen();
-        [HttpPost()]
-        [Route("RegisterUser")]
-        public bool RegisterUser([FromBody]FullUserData registerUserData) => _manager.RegisterUser(registerUserData);
-        [HttpPost()]
-        [Route("ChangePassword")]
-        public bool ChangePassword([FromBody] ActionMessage action) => _manager.ChangePassword(action);
-
-        [HttpPost()]
-        [Route("DeleteUser")]
-        public bool DeleteUser([FromBody] ActionMessage action) => _manager.DeleteUser(action);
-
+        public string GetTestPflanzen() => _manager.GetTestPflanzen();        
         [HttpPost()]
         [Route("GetUsers")]
-        public string GetUsers([FromBody] UserSessionData usd) => _manager.GetUsers(usd);
-
+        public string GetUsers([FromBody] UserSessionData usd) => _manager.GetUsers(usd);        
         [HttpPost()]
         [Route("GetUserPflanzen")]
         public string UserPflanzen([FromBody] UserSessionData userSessionData) => _manager.UserPflanzen(userSessionData);
@@ -50,22 +44,40 @@ namespace _WebAPI____HTTP_REST.Controllers
         [Route("GetPflanzenArten")]
         public string PflanzenArten([FromBody] UserSessionData userSessionData) => _manager.PflanzenArten(userSessionData);
 
+        //UserActions
+        [HttpPost()]
+        [Route("RegisterUser")]
+        public bool RegisterUser([FromBody] FullUserData registerUserData) => _manager.RegisterUser(registerUserData);
+        [HttpPost()]
+        [Route("ChangePassword")]
+        public bool ChangePassword([FromBody] ActionMessage action) => _manager.ChangePassword(action);
+        [HttpPost()]
+        [Route("DeleteUser")]
+        public bool DeleteUser([FromBody] ActionMessage action) => _manager.DeleteUser(action);
+        [HttpPost()]
+        [Route("AdminEditUser")]
+        public bool AdminEditUser([FromBody] AdminAction action) => _manager.AdminEditUser(action);
+
+        //Add, Delete, Modify Plants/Groups
         [HttpPost()]
         [Route("AddPflanze")]
         public bool PflanzeHinzufügen([FromBody] ActionMessage action) => _manager.PflanzeHinzufügen(action);
         [HttpPost()]
         [Route("AddGruppe")]
         public bool GruppeHinzufügen([FromBody] ActionMessage action) => _manager.GruppeHinzufügen(action);
-
-
-
         [HttpPost()]
-        [Route("Initialize")]
-        public string Initialize([FromBody] UserSessionData userSessionData) => _manager.Initialize(userSessionData);
-   
+        [Route("DeletePflanze")]
+        public bool PflanzeLöschen([FromBody] ActionMessage action) => _manager.PflanzeLöschen(action);
         [HttpPost()]
-        [Route("Login")]
-        public double Login([FromBody] LoginData loginData) => _manager.Login(loginData);
+        [Route("DeleteGruppe")]
+        public bool GruppeLöschen([FromBody] ActionMessage action) => _manager.GruppeLöschen(action);
+        [HttpPost()]
+        [Route("EditPflanze")]
+        public bool PflanzeBearbeiten([FromBody] ActionMessage action) => _manager.PflanzeBearbeiten(action);
+        [HttpPost()]
+        [Route("EditGruppe")]
+        public bool GruppeBearbeiten([FromBody] ActionMessage action) => _manager.GruppeBearbeiten(action);
+
       
     }
 }

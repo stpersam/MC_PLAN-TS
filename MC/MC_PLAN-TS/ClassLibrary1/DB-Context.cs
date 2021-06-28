@@ -48,7 +48,7 @@ namespace _ClassLibraryCommon
     {
         [Key]
         [Column("Session_ID")]
-        public double SessionId { get; set; }
+        public int SessionId { get; set; }
         [Column("Datum")]
         public DateTime Datum { get; set; }
         [Column("Status")]
@@ -75,7 +75,7 @@ namespace _ClassLibraryCommon
         [Column("User")]
         public User User { get; set; }
         [Column("Username")]
-        public string Username { get { return User.Username; } set { } }
+        public string Username { get { if (User != null) return User.Username; else return ""; } set { } }
         [JsonIgnore]
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
@@ -224,10 +224,10 @@ namespace _ClassLibraryCommon
                     {
                         Pflanze n = new Pflanze()
                         {
-                            Bild = "url" + r.Next(5,500),
+                            Bild = "url" + r.Next(5, 500),
                             Gegossen = DateTime.Now,
-                            Groesse = r.Next(2,50),
-                            Pflanzenname = "Meine Pflanze" + r.Next(1,100),
+                            Groesse = r.Next(2, 50),
+                            Pflanzenname = "Meine Pflanze" + r.Next(1, 100),
                             Gruppe = groups[r.Next(0, 29)],
                             Pflanzenart = pflanzenarten[r.Next(0, 9)],
                             User = users[k]
@@ -248,7 +248,7 @@ namespace _ClassLibraryCommon
             }
             else
             {
-                Users.Add(new User() { Username = username, EMail = email, Passwort = password });
+                Users.Add(new User() { Username = username, EMail = email, Passwort = password, Privileges = "User" });
                 this.SaveChanges();
                 return true;
             }
@@ -267,9 +267,9 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public double VerifyUser(string user, string password)
+        public int VerifyUser(string user, string password)
         {
-            double session = 0;
+            int session = 0;
             foreach (User u in Users)
             {
                 if (u.Username.Equals(user))
@@ -304,7 +304,7 @@ namespace _ClassLibraryCommon
             return session;
         }
 
-        public bool VerifyUser(string user, double sessionid)
+        public bool VerifyUser(string user, int sessionid)
         {
             foreach (User u in Users)
             {
@@ -340,7 +340,7 @@ namespace _ClassLibraryCommon
             return news;
         }
 
-        public string UserPflanzen(string user, double sessionid)
+        public string UserPflanzen(string user, int sessionid)
         {
             string returnstring = "";
             if (VerifyUser(user, sessionid))
@@ -356,7 +356,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string PflanzenArten(string user, double sessionid)
+        public string PflanzenArten(string user, int sessionid)
         {
             string returnstring = "";
             foreach (Pflanzenart pa in Pflanzenarten)
@@ -366,7 +366,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string Initialize(string user, double sessionid)
+        public string Initialize(string user, int sessionid)
         {
             string returnstring = "";
             returnstring += PflanzenArten(user, sessionid);
@@ -405,6 +405,20 @@ namespace _ClassLibraryCommon
         {
             if (action.Equals("loeschen"))
             {
+                var groups = Gruppen
+                      .Where(s => s.User.Username.Equals(user))
+                      .ToList();
+                foreach (Gruppe g in groups)
+                {
+                    g.User = null;
+                }
+                var plants = Pflanzen
+                      .Where(s => s.User.Username.Equals(user))
+                      .ToList();
+                foreach (Pflanze p in plants)
+                {
+                    p.User = null;
+                }
                 User u = Users.Find(user);
                 Users.Remove(u);
                 this.SaveChanges();
@@ -454,7 +468,7 @@ namespace _ClassLibraryCommon
 
         }
 
-        public string GetUsers(string user, double sessionid)
+        public string GetUsers(string user, int sessionid)
         {
             if (VerifyUser(user, sessionid) && Users.Find(user).Privileges.Equals("Administrator"))
             {
@@ -467,6 +481,56 @@ namespace _ClassLibraryCommon
                 return returnstring;
             }
             return null;
+        }
+
+
+        public bool AdminEditUser(UserSessionData uSDAdmin, FullUserData userData, string action)
+        {
+            if (VerifyUser(uSDAdmin.user, uSDAdmin.sessionid) && Users.Find(uSDAdmin.user).Privileges.Equals("Administrator"))
+            {
+                ChangePassword(userData.loginData.user, Users.Find(userData.loginData.user).Passwort, action);
+                Users.Find(userData.loginData.user).EMail = userData.email;
+                this.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool GruppeBearbeiten(LoginData loginData, string actionstring)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool PflanzeBearbeiten(LoginData loginData, string actionstring)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool GruppeLöschen(LoginData loginData, string actionstring)
+        {
+            try
+            {
+                Gruppe g = JsonSerializer.Deserialize<Gruppe>(actionstring);
+                var plants = Pflanzen
+                .Where(s => s.Gruppe.GruppenID.Equals(g.GruppenID))
+                .ToList();
+                foreach (Pflanze p in plants)
+                {
+                    p.Gruppe = null;
+                }
+                Gruppen.Remove(g);
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool PflanzeLöschen(LoginData loginData, string actionstring)
+        {
+            throw new NotImplementedException();
         }
     }
 }

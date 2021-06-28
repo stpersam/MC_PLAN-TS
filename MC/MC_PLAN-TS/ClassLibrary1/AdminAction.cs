@@ -9,7 +9,7 @@ namespace _ClassLibraryCommon
     [Serializable]
     public class AdminAction
     {
-        public LoginData loginAdmin { get; set; }
+        public UserSessionData USDAdmin { get; set; }
         public FullUserData userData { get; set; }
         public string action { get; set; }
     }

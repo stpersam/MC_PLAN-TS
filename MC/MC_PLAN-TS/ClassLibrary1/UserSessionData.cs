@@ -10,6 +10,6 @@ namespace _ClassLibraryCommon
     public class UserSessionData
     {
         public string user { get; set; }
-        public double sessionid { get; set; }
+        public int sessionid { get; set; }
     }
 }
