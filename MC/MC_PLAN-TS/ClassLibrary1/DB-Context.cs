@@ -198,7 +198,7 @@ namespace _ClassLibraryCommon
 
             if (!Gruppen.Any())
             {
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     Gruppe n = new Gruppe() { User = users[r.Next(0, 9)], Beschreibung = "Gruppenbeschreibung " + i, Gruppenname = "Gruppe " + i };
                     this.Gruppen.Add(n);
@@ -222,7 +222,7 @@ namespace _ClassLibraryCommon
 
             if (!Pflanzen.Any())
             {
-                for (int o = 0; o < 50; o++)
+                for (int o = 0; o < 150; o++)
                 {
                     for (int k = 0; k < 10; k++)
                     {
@@ -232,7 +232,7 @@ namespace _ClassLibraryCommon
                             Gegossen = DateTime.Now,
                             Groesse = r.Next(2, 50),
                             Pflanzenname = "Meine Pflanze" + r.Next(1, 100),
-                            Gruppe = groups[r.Next(0, 29)],
+                            Gruppe = groups[r.Next(0, 50)],
                             Pflanzenart = pflanzenarten[r.Next(0, 9)],
                             User = users[k]
                         };
