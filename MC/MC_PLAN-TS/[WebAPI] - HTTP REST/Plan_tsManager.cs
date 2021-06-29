@@ -73,10 +73,15 @@ namespace _WebAPI____HTTP_REST
 
 
         //Add, Delete, Modify Plants/Groups           
-
+        /*
         internal bool PflanzeHinzufügen(EditMessage action)
         {
             return _db.PflanzeHinzufügen(action.usd, action.actionstring);
+        }
+        */
+        internal bool PflanzeHinzufügen(PflanzeMessage pmsg)
+        {
+            return _db.PflanzeHinzufügen(pmsg);
         }
 
         internal bool GruppeHinzufügen(EditMessage action)

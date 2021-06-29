@@ -38,7 +38,7 @@ namespace _ClassLibraryCommon
                 else
                     return 0;
             }
-            set {}
+            set { }
         }
 
         [Column("Privileges")]
@@ -70,8 +70,9 @@ namespace _ClassLibraryCommon
         [Column("Bild")]
         public string Bild { get; set; }
         [Column("Gegossen")]
-        public DateTime Gegossen {
-           get; set; 
+        public DateTime Gegossen
+        {
+            get; set;
         }
         [Column("Groesse")]
         public double Groesse { get; set; }
@@ -84,12 +85,12 @@ namespace _ClassLibraryCommon
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
         [Column("Gruppenname")]
-        public string Gruppenname { get { if (User != null) return Gruppe.Gruppenname; else return ""; } set { } }
+        public string Gruppenname { get { if (Gruppe != null) return Gruppe.Gruppenname; else return ""; } set { } }
         [JsonIgnore]
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
-        public string Pflanzeartname { get { if (User != null) return Pflanzenart.Bezeichnung; else return ""; } set { } }
+        public string Pflanzeartname { get { if (Pflanzenart != null) return Pflanzenart.Bezeichnung; else return ""; } set { } }
     }
 
     [Table("GRUPPE")]
@@ -154,11 +155,12 @@ namespace _ClassLibraryCommon
             {
                 this.Database.EnsureCreated();
                 this.SaveChanges();
-                if (!Pflanzen.Any()) { 
+                if (!Pflanzen.Any())
+                {
                     TestDatenGenerieren();
                 }
             }
-           
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder myOptionsBuilder)
@@ -177,19 +179,20 @@ namespace _ClassLibraryCommon
 
 
         private void TestDatenGenerieren()
-        {            
+        {
             Random r = new Random();
             Session deadsession = null;
             if (!Sessions.Any())
             {
-                 deadsession = new Session() { SessionId = -1, Status = false, Datum = DateTime.Now };
+                deadsession = new Session() { SessionId = -1, Status = false, Datum = DateTime.Now };
                 Sessions.Add(deadsession);
                 this.SaveChanges();
             }
-            else {
-                 deadsession = Sessions.First();
+            else
+            {
+                deadsession = Sessions.First();
             }
-            
+
             if (!Users.Any())
             {
                 for (int i = 0; i < 10; i++)
@@ -300,7 +303,8 @@ namespace _ClassLibraryCommon
                                 session = u.SessionId;
                                 break;
                             }
-                            else {
+                            else
+                            {
                                 if (u.Privileges.Equals("Administrator"))
                                 {
                                     u.Session = CreateNewSession(true);
@@ -378,7 +382,7 @@ namespace _ClassLibraryCommon
                     .Where(s => s.User.Username.Equals(user))
                     .ToList();
                 foreach (Pflanze p in plants)
-                {                    
+                {
                     returnstring += JsonSerializer.Serialize(p);
                 }
             }
@@ -455,14 +459,15 @@ namespace _ClassLibraryCommon
             return false;
         }
 
+
         public bool PflanzeHinzufügen(UserSessionData loginData, string json)
         {
             if (VerifyUser(loginData.user, loginData.sessionid))
             {
                 Pflanze newpflanze = null;
-                
-                    newpflanze = JsonSerializer.Deserialize<Pflanze>(json);
-               
+
+                newpflanze = JsonSerializer.Deserialize<Pflanze>(json);
+
 
                 newpflanze.User = Users.Find(newpflanze.User.Username);
                 newpflanze.Gruppe = Gruppen.Find(newpflanze.Gruppe.GruppenID);
@@ -473,6 +478,30 @@ namespace _ClassLibraryCommon
                 return true;
             }
             return false;
+
+        }
+
+        public bool PflanzeHinzufügen(PflanzeMessage pmsg)
+        {
+            UserSessionData usd = pmsg.usd;
+            Pflanze newpflanze = pmsg.pflanze;
+
+
+
+
+            newpflanze.User = Users.Find(usd.user);
+            Gruppe g = Gruppen
+                       .Where(g => g.Gruppenname == newpflanze.Gruppenname).FirstOrDefault();
+            newpflanze.Gruppe = g;
+            Pflanzenart pa = Pflanzenarten
+                .Where(g => g.Bezeichnung == newpflanze.Pflanzeartname).FirstOrDefault();
+            newpflanze.Pflanzenart = pa;
+
+            Pflanzen.Add(newpflanze);
+            this.SaveChanges();
+            return true;
+
+
 
         }
 
@@ -546,14 +575,14 @@ namespace _ClassLibraryCommon
         {
             try
             {
-                Pflanze p = JsonSerializer.Deserialize<Pflanze>(actionstring);                
+                Pflanze p = JsonSerializer.Deserialize<Pflanze>(actionstring);
                 Pflanzen.Find(p.PflanzenID).Bild = p.Bild;
                 Pflanzen.Find(p.PflanzenID).Gegossen = p.Gegossen;
                 Pflanzen.Find(p.PflanzenID).Groesse = p.Groesse;
                 Pflanzen.Find(p.PflanzenID).Gruppe = p.Gruppe;
                 Pflanzen.Find(p.PflanzenID).Pflanzenart = p.Pflanzenart;
                 Pflanzen.Find(p.PflanzenID).Pflanzenname = p.Pflanzenname;
-                Pflanzen.Find(p.PflanzenID).User = p.User;                
+                Pflanzen.Find(p.PflanzenID).User = p.User;
                 this.SaveChanges();
                 return true;
             }

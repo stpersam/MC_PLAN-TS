@@ -59,9 +59,14 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool AdminEditUser([FromBody] AdminAction action) => _manager.AdminEditUser(action);
 
         //Add, Delete, Modify Plants/Groups
+        /*
         [HttpPost()]
         [Route("AddPflanze")]
         public bool PflanzeHinzufügen([FromBody] EditMessage action) => _manager.PflanzeHinzufügen(action);
+        */
+        [HttpPost()]
+        [Route("AddPflanze")]
+        public bool PflanzeHinzufügen([FromBody] PflanzeMessage pmsg) => _manager.PflanzeHinzufügen(pmsg);
         [HttpPost()]
         [Route("AddGruppe")]
         public bool GruppeHinzufügen([FromBody] EditMessage action) => _manager.GruppeHinzufügen(action);
