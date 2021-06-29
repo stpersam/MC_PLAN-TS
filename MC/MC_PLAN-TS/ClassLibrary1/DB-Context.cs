@@ -152,8 +152,9 @@ namespace _ClassLibraryCommon
             {
                 this.Database.EnsureCreated();
                 this.SaveChanges();
+                TestDatenGenerieren();
             }
-            TestDatenGenerieren();
+           
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder myOptionsBuilder)
@@ -447,14 +448,14 @@ namespace _ClassLibraryCommon
             if (VerifyUser(loginData.user, loginData.password) > 0)
             {
                 Pflanze newpflanze = null;
-                try
-                {
+                
                     newpflanze = JsonSerializer.Deserialize<Pflanze>(json);
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
+               
+
+                newpflanze.User = Users.Find(newpflanze.User.Username);
+                newpflanze.Gruppe = Gruppen.Find(newpflanze.Gruppe.GruppenID);
+                newpflanze.Pflanzenart = Pflanzenarten.Find(newpflanze.Pflanzenart.Bezeichnung);
+
                 Pflanzen.Add(newpflanze);
                 this.SaveChanges();
                 return true;
