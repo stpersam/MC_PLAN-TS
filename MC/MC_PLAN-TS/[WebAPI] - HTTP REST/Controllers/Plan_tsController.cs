@@ -72,7 +72,7 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool GruppeLöschen([FromBody] GruppeMessage gmsg) => _manager.GruppeLöschen(gmsg);
         [HttpPost()]
         [Route("EditPflanze")]
-        public bool PflanzeBearbeiten([FromBody] PflanzeMessage pmsg) => _manager.PflanzeBearbeiten(pmsg);
+        public bool PflanzeBearbeiten([FromBody] PflanzeMessageEdit pmsg) => _manager.PflanzeBearbeiten(pmsg);
         [HttpPost()]
         [Route("EditGruppe")]
         public bool GruppeBearbeiten([FromBody] GruppeMessage gmsg) => _manager.GruppeBearbeiten(gmsg);

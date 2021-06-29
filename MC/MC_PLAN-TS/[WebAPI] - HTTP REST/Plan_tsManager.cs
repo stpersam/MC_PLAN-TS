@@ -91,7 +91,7 @@ namespace _WebAPI____HTTP_REST
             return _db.GruppeLöschen(gmsg);
         }
 
-        internal bool PflanzeBearbeiten(PflanzeMessage pmsg)
+        internal bool PflanzeBearbeiten(PflanzeMessageEdit pmsg)
         {
             return _db.PflanzeBearbeiten(pmsg);
         }

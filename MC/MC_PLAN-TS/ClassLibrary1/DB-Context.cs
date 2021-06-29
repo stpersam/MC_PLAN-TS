@@ -545,18 +545,18 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool PflanzeBearbeiten(PflanzeMessage pmsg)
+        public bool PflanzeBearbeiten(PflanzeMessageEdit pmsg)
         {
             try
             {
                 Pflanze p = pmsg.pflanze;
-                Pflanzen.Find(p.PflanzenID).Bild = p.Bild;
-                Pflanzen.Find(p.PflanzenID).Gegossen = p.Gegossen;
-                Pflanzen.Find(p.PflanzenID).Groesse = p.Groesse;
-                Pflanzen.Find(p.PflanzenID).Gruppe = p.Gruppe;
-                Pflanzen.Find(p.PflanzenID).Pflanzenart = p.Pflanzenart;
-                Pflanzen.Find(p.PflanzenID).Pflanzenname = p.Pflanzenname;
-                Pflanzen.Find(p.PflanzenID).User = p.User;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Bild = p.Bild;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Gegossen = p.Gegossen;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Groesse = p.Groesse;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Gruppe = p.Gruppe;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Pflanzenart = p.Pflanzenart;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Pflanzenname = p.Pflanzenname;
+                Pflanzen.Find(pmsg.Pflanzen_ID).User = p.User;
                 this.SaveChanges();
                 return true;
             }
