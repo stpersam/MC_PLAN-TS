@@ -70,13 +70,8 @@ namespace _ClassLibraryCommon
         [Column("Bild")]
         public string Bild { get; set; }
         [Column("Gegossen")]
-        public DateTime Gegossen { 
-            get {
-                return Gegossen;
-            } 
-            set {
-                Gegossen = value;
-            } 
+        public DateTime Gegossen {
+           get; set; 
         }
         [Column("Groesse")]
         public double Groesse { get; set; }
@@ -182,11 +177,19 @@ namespace _ClassLibraryCommon
 
 
         private void TestDatenGenerieren()
-        {
+        {            
             Random r = new Random();
-            Session deadsession = new Session() { SessionId = -1, Status = false, Datum = DateTime.Now };
-            Sessions.Add(deadsession);
-            this.SaveChanges();
+            Session deadsession = null;
+            if (!Sessions.Any())
+            {
+                 deadsession = new Session() { SessionId = -1, Status = false, Datum = DateTime.Now };
+                Sessions.Add(deadsession);
+                this.SaveChanges();
+            }
+            else {
+                 deadsession = Sessions.First();
+            }
+            
             if (!Users.Any())
             {
                 for (int i = 0; i < 10; i++)
