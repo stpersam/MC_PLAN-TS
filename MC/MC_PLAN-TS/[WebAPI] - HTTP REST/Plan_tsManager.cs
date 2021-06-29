@@ -71,14 +71,6 @@ namespace _WebAPI____HTTP_REST
             return _db.DeleteUser(action.loginData.user, action.loginData.password, action.actionstring);
         }
 
-
-        //Add, Delete, Modify Plants/Groups           
-        /*
-        internal bool PflanzeHinzufügen(EditMessage action)
-        {
-            return _db.PflanzeHinzufügen(action.usd, action.actionstring);
-        }
-        */
         internal bool PflanzeHinzufügen(PflanzeMessage pmsg)
         {
             return _db.PflanzeHinzufügen(pmsg);
@@ -89,9 +81,9 @@ namespace _WebAPI____HTTP_REST
             return _db.GruppeHinzufügen(action.usd, action.actionstring);
         }
 
-        internal bool PflanzeLöschen(EditMessage action)
+        internal bool PflanzeLöschen(PflanzeMessage pmsg)
         {
-            return _db.PflanzeLöschen(action.usd, action.actionstring);
+            return _db.PflanzeLöschen(pmsg);
         }
 
         internal bool GruppeLöschen(EditMessage action)
@@ -99,9 +91,9 @@ namespace _WebAPI____HTTP_REST
             return _db.GruppeLöschen(action.usd, action.actionstring);
         }
 
-        internal bool PflanzeBearbeiten(EditMessage action)
+        internal bool PflanzeBearbeiten(PflanzeMessage pmsg)
         {
-            return _db.PflanzeBearbeiten(action.usd, action.actionstring);
+            return _db.PflanzeBearbeiten(pmsg);
         }
 
         internal bool GruppeBearbeiten(EditMessage action)

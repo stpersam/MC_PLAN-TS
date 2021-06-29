@@ -58,12 +58,6 @@ namespace _WebAPI____HTTP_REST.Controllers
         [Route("AdminEditUser")]
         public bool AdminEditUser([FromBody] AdminAction action) => _manager.AdminEditUser(action);
 
-        //Add, Delete, Modify Plants/Groups
-        /*
-        [HttpPost()]
-        [Route("AddPflanze")]
-        public bool PflanzeHinzufügen([FromBody] EditMessage action) => _manager.PflanzeHinzufügen(action);
-        */
         [HttpPost()]
         [Route("AddPflanze")]
         public bool PflanzeHinzufügen([FromBody] PflanzeMessage pmsg) => _manager.PflanzeHinzufügen(pmsg);
@@ -72,13 +66,13 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool GruppeHinzufügen([FromBody] EditMessage action) => _manager.GruppeHinzufügen(action);
         [HttpPost()]
         [Route("DeletePflanze")]
-        public bool PflanzeLöschen([FromBody] EditMessage action) => _manager.PflanzeLöschen(action);
+        public bool PflanzeLöschen([FromBody] PflanzeMessage pmsg) => _manager.PflanzeLöschen(pmsg);
         [HttpPost()]
         [Route("DeleteGruppe")]
         public bool GruppeLöschen([FromBody] EditMessage action) => _manager.GruppeLöschen(action);
         [HttpPost()]
         [Route("EditPflanze")]
-        public bool PflanzeBearbeiten([FromBody] EditMessage action) => _manager.PflanzeBearbeiten(action);
+        public bool PflanzeBearbeiten([FromBody] PflanzeMessage pmsg) => _manager.PflanzeBearbeiten(pmsg);
         [HttpPost()]
         [Route("EditGruppe")]
         public bool GruppeBearbeiten([FromBody] EditMessage action) => _manager.GruppeBearbeiten(action);

@@ -85,12 +85,13 @@ namespace _ClassLibraryCommon
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
         [Column("Gruppenname")]
-        public string Gruppenname { get { if (Gruppe != null) return Gruppe.Gruppenname; else return ""; } set { } }
+        public string Gruppenname { get { if (Gruppe != null) return Gruppe.Gruppenname; else return ""; } set { Gruppe = new Gruppe() { Gruppenname = value }; } }      
+
         [JsonIgnore]
         [Column("Pflanzenart")]
         public Pflanzenart Pflanzenart { get; set; }
         [Column("Pflanzeartname")]
-        public string Pflanzeartname { get { if (Pflanzenart != null) return Pflanzenart.Bezeichnung; else return ""; } set { } }
+        public string Pflanzeartname { get { if (Pflanzenart != null) return Pflanzenart.Bezeichnung; else return ""; } set { Pflanzenart = new Pflanzenart() { Bezeichnung = value }; } }
     }
 
     [Table("GRUPPE")]
@@ -460,49 +461,22 @@ namespace _ClassLibraryCommon
         }
 
 
-        public bool PflanzeHinzufügen(UserSessionData loginData, string json)
-        {
-            if (VerifyUser(loginData.user, loginData.sessionid))
-            {
-                Pflanze newpflanze = null;
-
-                newpflanze = JsonSerializer.Deserialize<Pflanze>(json);
-
-
-                newpflanze.User = Users.Find(newpflanze.User.Username);
-                newpflanze.Gruppe = Gruppen.Find(newpflanze.Gruppe.GruppenID);
-                newpflanze.Pflanzenart = Pflanzenarten.Find(newpflanze.Pflanzenart.Bezeichnung);
-
-                Pflanzen.Add(newpflanze);
-                this.SaveChanges();
-                return true;
-            }
-            return false;
-
-        }
-
         public bool PflanzeHinzufügen(PflanzeMessage pmsg)
         {
             UserSessionData usd = pmsg.usd;
             Pflanze newpflanze = pmsg.pflanze;
 
-
-
-
             newpflanze.User = Users.Find(usd.user);
             Gruppe g = Gruppen
-                       .Where(g => g.Gruppenname == newpflanze.Gruppenname).FirstOrDefault();
+                       .Where(g => g.Gruppenname == newpflanze.Gruppe.Gruppenname).FirstOrDefault();
             newpflanze.Gruppe = g;
             Pflanzenart pa = Pflanzenarten
-                .Where(g => g.Bezeichnung == newpflanze.Pflanzeartname).FirstOrDefault();
+                .Where(g => g.Bezeichnung == newpflanze.Pflanzenart.Bezeichnung).FirstOrDefault();
             newpflanze.Pflanzenart = pa;
 
             Pflanzen.Add(newpflanze);
             this.SaveChanges();
             return true;
-
-
-
         }
 
         public bool GruppeHinzufügen(UserSessionData loginData, string json)
@@ -571,11 +545,11 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool PflanzeBearbeiten(UserSessionData loginData, string actionstring)
+        public bool PflanzeBearbeiten(PflanzeMessage pmsg)
         {
             try
             {
-                Pflanze p = JsonSerializer.Deserialize<Pflanze>(actionstring);
+                Pflanze p = pmsg.pflanze;
                 Pflanzen.Find(p.PflanzenID).Bild = p.Bild;
                 Pflanzen.Find(p.PflanzenID).Gegossen = p.Gegossen;
                 Pflanzen.Find(p.PflanzenID).Groesse = p.Groesse;
@@ -614,11 +588,11 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool PflanzeLöschen(UserSessionData loginData, string actionstring)
+        public bool PflanzeLöschen(PflanzeMessage pmsg)
         {
             try
             {
-                Pflanze p = JsonSerializer.Deserialize<Pflanze>(actionstring);
+                Pflanze p = pmsg.pflanze;
                 Pflanzen.Remove(p);
                 this.SaveChanges();
                 return true;
