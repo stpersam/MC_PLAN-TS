@@ -22,19 +22,23 @@ namespace _ClassLibraryCommon
         public string Passwort { get; set; }
         [JsonIgnore]
         [Column("Session")]
-        public Session Session { get; set; }
+        public Session? Session { get; set; }
         [Column("Session_ID")]
-        public double SessionId
+        public int SessionId
         {
+            /*
+            get { return Session.SessionId; } set { }
+            */
             get
             {
                 if (Session != null)
+                {
                     return Session.SessionId;
+                }
                 else
                     return 0;
             }
-            set { }
-
+            set {}
         }
 
         [Column("Privileges")]
@@ -53,8 +57,6 @@ namespace _ClassLibraryCommon
         public DateTime Datum { get; set; }
         [Column("Status")]
         public bool Status { get; set; }
-
-
     }
 
     [Table("PFLANZE")]
@@ -172,7 +174,9 @@ namespace _ClassLibraryCommon
         private void TestDatenGenerieren()
         {
             Random r = new Random();
-            Session deadsession = new Session() { SessionId = 0, Status = false, Datum = DateTime.Now };
+            Session deadsession = new Session() { SessionId = -1, Status = false, Datum = DateTime.Now };
+            Sessions.Add(deadsession);
+            this.SaveChanges();
             if (!Users.Any())
             {
                 for (int i = 0; i < 10; i++)
@@ -224,7 +228,7 @@ namespace _ClassLibraryCommon
                     {
                         Pflanze n = new Pflanze()
                         {
-                            Bild = "url" + r.Next(5, 500),
+                            Bild = "plant" + r.Next(1, 3),
                             Gegossen = DateTime.Now,
                             Groesse = r.Next(2, 50),
                             Pflanzenname = "Meine Pflanze" + r.Next(1, 100),
@@ -278,8 +282,20 @@ namespace _ClassLibraryCommon
                     {
                         if (u.Session != null)
                         {
-                            if (u.Session.Datum > DateTime.Now.AddMinutes(-60))
+                            if (u.Session.Datum > DateTime.Now.AddMinutes(-60) && u.SessionId > 0)
                             {
+                                session = u.SessionId;
+                                break;
+                            }
+                            else {
+                                if (u.Privileges.Equals("Administrator"))
+                                {
+                                    u.Session = CreateNewSession(true);
+                                }
+                                else
+                                {
+                                    u.Session = CreateNewSession(false);
+                                }
                                 session = u.Session.SessionId;
                                 break;
                             }
@@ -304,7 +320,7 @@ namespace _ClassLibraryCommon
             return session;
         }
 
-        public bool VerifyUser(string user, double sessionid)
+        public bool VerifyUser(string user, int sessionid)
         {
             foreach (User u in Users)
             {
@@ -336,11 +352,11 @@ namespace _ClassLibraryCommon
             {
                 news = new Session() { SessionId = r.Next(10000, 500000), Datum = DateTime.Now, Status = true };
             }
-            this.SaveChanges();
+            Sessions.Add(news);
             return news;
         }
 
-        public string UserPflanzen(string user, double sessionid)
+        public string UserPflanzen(string user, int sessionid)
         {
             string returnstring = "";
             if (VerifyUser(user, sessionid))
@@ -356,7 +372,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string PflanzenArten(string user, double sessionid)
+        public string PflanzenArten(string user, int sessionid)
         {
             string returnstring = "";
             foreach (Pflanzenart pa in Pflanzenarten)
@@ -366,7 +382,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string Initialize(string user, double sessionid)
+        public string Initialize(string user, int sessionid)
         {
             string returnstring = "";
             returnstring += PflanzenArten(user, sessionid);
@@ -377,7 +393,7 @@ namespace _ClassLibraryCommon
             return returnstring;
         }
 
-        public string UserGruppen(string user, double sessionid)
+        public string UserGruppen(string user, int sessionid)
         {
             string returnstring = "";
             var groups = Gruppen
@@ -468,7 +484,7 @@ namespace _ClassLibraryCommon
 
         }
 
-        public string GetUsers(string user, double sessionid)
+        public string GetUsers(string user, int sessionid)
         {
             if (VerifyUser(user, sessionid) && Users.Find(user).Privileges.Equals("Administrator"))
             {
