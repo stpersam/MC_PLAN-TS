@@ -487,6 +487,7 @@ namespace _ClassLibraryCommon
                 try
                 {
                     newgruppe = gmsg.gruppe;
+                    newgruppe.User = Users.Where(u => u.Username == newgruppe.Username).FirstOrDefault();
                 }
                 catch (Exception e)
                 {
@@ -594,11 +595,11 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool PflanzeLöschen(PflanzeMessage pmsg)
+        public bool PflanzeLöschen(PflanzeMessageEdit pmsg)
         {
             try
             {
-                Pflanze p = pmsg.pflanze;
+                Pflanze p = Pflanzen.Find(pmsg.Pflanzen_ID);
                 Pflanzen.Remove(p);
                 this.SaveChanges();
                 return true;
