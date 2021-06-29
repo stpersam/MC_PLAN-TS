@@ -246,7 +246,7 @@ namespace _ClassLibraryCommon
                         Pflanze n = new Pflanze()
                         {
                             Bild = "plant" + r.Next(1, 3),
-                            Gegossen = DateTime.Now,
+                            Gegossen = DateTime.Now.AddMinutes(-r.Next(0,21600)),
                             Groesse = r.Next(2, 50),
                             Pflanzenname = "Meine Pflanze" + r.Next(1, 100),
                             Gruppe = groups[r.Next(0, 50)],
