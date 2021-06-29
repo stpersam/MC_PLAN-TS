@@ -76,32 +76,32 @@ namespace _WebAPI____HTTP_REST
 
         internal bool PflanzeHinzufügen(EditMessage action)
         {
-            return _db.PflanzeHinzufügen(action.USD, action.actionstring);
+            return _db.PflanzeHinzufügen(action.usd, action.actionstring);
         }
 
         internal bool GruppeHinzufügen(EditMessage action)
         {
-            return _db.GruppeHinzufügen(action.USD, action.actionstring);
+            return _db.GruppeHinzufügen(action.usd, action.actionstring);
         }
 
         internal bool PflanzeLöschen(EditMessage action)
         {
-            return _db.PflanzeLöschen(action.USD, action.actionstring);
+            return _db.PflanzeLöschen(action.usd, action.actionstring);
         }
 
         internal bool GruppeLöschen(EditMessage action)
         {
-            return _db.GruppeLöschen(action.USD, action.actionstring);
+            return _db.GruppeLöschen(action.usd, action.actionstring);
         }
 
         internal bool PflanzeBearbeiten(EditMessage action)
         {
-            return _db.PflanzeBearbeiten(action.USD, action.actionstring);
+            return _db.PflanzeBearbeiten(action.usd, action.actionstring);
         }
 
         internal bool GruppeBearbeiten(EditMessage action)
         {
-            return _db.GruppeBearbeiten(action.USD, action.actionstring);
+            return _db.GruppeBearbeiten(action.usd, action.actionstring);
         }
     }
 }
