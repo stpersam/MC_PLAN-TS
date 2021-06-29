@@ -74,34 +74,34 @@ namespace _WebAPI____HTTP_REST
 
         //Add, Delete, Modify Plants/Groups           
 
-        internal bool PflanzeHinzufügen(ActionMessage action)
+        internal bool PflanzeHinzufügen(EditMessage action)
         {
-            return _db.PflanzeHinzufügen(action.loginData, action.actionstring);
+            return _db.PflanzeHinzufügen(action.USD, action.actionstring);
         }
 
-        internal bool GruppeHinzufügen(ActionMessage action)
+        internal bool GruppeHinzufügen(EditMessage action)
         {
-            return _db.GruppeHinzufügen(action.loginData, action.actionstring);
+            return _db.GruppeHinzufügen(action.USD, action.actionstring);
         }
 
-        internal bool PflanzeLöschen(ActionMessage action)
+        internal bool PflanzeLöschen(EditMessage action)
         {
-            return _db.PflanzeLöschen(action.loginData, action.actionstring);
+            return _db.PflanzeLöschen(action.USD, action.actionstring);
         }
 
-        internal bool GruppeLöschen(ActionMessage action)
+        internal bool GruppeLöschen(EditMessage action)
         {
-            return _db.GruppeLöschen(action.loginData, action.actionstring);
+            return _db.GruppeLöschen(action.USD, action.actionstring);
         }
 
-        internal bool PflanzeBearbeiten(ActionMessage action)
+        internal bool PflanzeBearbeiten(EditMessage action)
         {
-            return _db.PflanzeBearbeiten(action.loginData, action.actionstring);
+            return _db.PflanzeBearbeiten(action.USD, action.actionstring);
         }
 
-        internal bool GruppeBearbeiten(ActionMessage action)
+        internal bool GruppeBearbeiten(EditMessage action)
         {
-            return _db.GruppeBearbeiten(action.loginData, action.actionstring);
+            return _db.GruppeBearbeiten(action.USD, action.actionstring);
         }
     }
 }

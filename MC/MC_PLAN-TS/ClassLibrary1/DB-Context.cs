@@ -445,9 +445,9 @@ namespace _ClassLibraryCommon
             return false;
         }
 
-        public bool PflanzeHinzufügen(LoginData loginData, string json)
+        public bool PflanzeHinzufügen(UserSessionData loginData, string json)
         {
-            if (VerifyUser(loginData.user, loginData.password) > 0)
+            if (VerifyUser(loginData.user, loginData.sessionid))
             {
                 Pflanze newpflanze = null;
                 
@@ -466,9 +466,9 @@ namespace _ClassLibraryCommon
 
         }
 
-        public bool GruppeHinzufügen(LoginData loginData, string json)
+        public bool GruppeHinzufügen(UserSessionData loginData, string json)
         {
-            if (VerifyUser(loginData.user, loginData.password) > 0)
+            if (VerifyUser(loginData.user, loginData.sessionid))
             {
                 Gruppe newgruppe = null;
                 try
@@ -515,7 +515,7 @@ namespace _ClassLibraryCommon
             return false;
         }
 
-        public bool GruppeBearbeiten(LoginData loginData, string actionstring)
+        public bool GruppeBearbeiten(UserSessionData loginData, string actionstring)
         {
             try
             {
@@ -532,7 +532,7 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool PflanzeBearbeiten(LoginData loginData, string actionstring)
+        public bool PflanzeBearbeiten(UserSessionData loginData, string actionstring)
         {
             try
             {
@@ -553,7 +553,7 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool GruppeLöschen(LoginData loginData, string actionstring)
+        public bool GruppeLöschen(UserSessionData loginData, string actionstring)
         {
             try
             {
@@ -575,7 +575,7 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool PflanzeLöschen(LoginData loginData, string actionstring)
+        public bool PflanzeLöschen(UserSessionData loginData, string actionstring)
         {
             try
             {

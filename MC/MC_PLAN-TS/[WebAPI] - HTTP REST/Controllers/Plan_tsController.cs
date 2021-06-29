@@ -61,22 +61,22 @@ namespace _WebAPI____HTTP_REST.Controllers
         //Add, Delete, Modify Plants/Groups
         [HttpPost()]
         [Route("AddPflanze")]
-        public bool PflanzeHinzufügen([FromBody] ActionMessage action) => _manager.PflanzeHinzufügen(action);
+        public bool PflanzeHinzufügen([FromBody] EditMessage action) => _manager.PflanzeHinzufügen(action);
         [HttpPost()]
         [Route("AddGruppe")]
-        public bool GruppeHinzufügen([FromBody] ActionMessage action) => _manager.GruppeHinzufügen(action);
+        public bool GruppeHinzufügen([FromBody] EditMessage action) => _manager.GruppeHinzufügen(action);
         [HttpPost()]
         [Route("DeletePflanze")]
-        public bool PflanzeLöschen([FromBody] ActionMessage action) => _manager.PflanzeLöschen(action);
+        public bool PflanzeLöschen([FromBody] EditMessage action) => _manager.PflanzeLöschen(action);
         [HttpPost()]
         [Route("DeleteGruppe")]
-        public bool GruppeLöschen([FromBody] ActionMessage action) => _manager.GruppeLöschen(action);
+        public bool GruppeLöschen([FromBody] EditMessage action) => _manager.GruppeLöschen(action);
         [HttpPost()]
         [Route("EditPflanze")]
-        public bool PflanzeBearbeiten([FromBody] ActionMessage action) => _manager.PflanzeBearbeiten(action);
+        public bool PflanzeBearbeiten([FromBody] EditMessage action) => _manager.PflanzeBearbeiten(action);
         [HttpPost()]
         [Route("EditGruppe")]
-        public bool GruppeBearbeiten([FromBody] ActionMessage action) => _manager.GruppeBearbeiten(action);
+        public bool GruppeBearbeiten([FromBody] EditMessage action) => _manager.GruppeBearbeiten(action);
 
       
     }
