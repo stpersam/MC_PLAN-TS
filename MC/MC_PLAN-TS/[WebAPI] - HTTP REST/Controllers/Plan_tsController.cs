@@ -63,19 +63,19 @@ namespace _WebAPI____HTTP_REST.Controllers
         public bool PflanzeHinzufügen([FromBody] PflanzeMessage pmsg) => _manager.PflanzeHinzufügen(pmsg);
         [HttpPost()]
         [Route("AddGruppe")]
-        public bool GruppeHinzufügen([FromBody] EditMessage action) => _manager.GruppeHinzufügen(action);
+        public bool GruppeHinzufügen([FromBody] GruppeMessage gmsg) => _manager.GruppeHinzufügen(gmsg);
         [HttpPost()]
         [Route("DeletePflanze")]
         public bool PflanzeLöschen([FromBody] PflanzeMessage pmsg) => _manager.PflanzeLöschen(pmsg);
         [HttpPost()]
         [Route("DeleteGruppe")]
-        public bool GruppeLöschen([FromBody] EditMessage action) => _manager.GruppeLöschen(action);
+        public bool GruppeLöschen([FromBody] GruppeMessage gmsg) => _manager.GruppeLöschen(gmsg);
         [HttpPost()]
         [Route("EditPflanze")]
         public bool PflanzeBearbeiten([FromBody] PflanzeMessage pmsg) => _manager.PflanzeBearbeiten(pmsg);
         [HttpPost()]
         [Route("EditGruppe")]
-        public bool GruppeBearbeiten([FromBody] EditMessage action) => _manager.GruppeBearbeiten(action);
+        public bool GruppeBearbeiten([FromBody] GruppeMessage gmsg) => _manager.GruppeBearbeiten(gmsg);
 
       
     }

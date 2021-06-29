@@ -38,7 +38,7 @@ namespace _ClassLibraryCommon
                 else
                     return 0;
             }
-            set { }
+            set { Session = new Session() { SessionId = value }; }
         }
 
         [Column("Privileges")]
@@ -80,7 +80,7 @@ namespace _ClassLibraryCommon
         [Column("User")]
         public User? User { get; set; }
         [Column("Username")]
-        public string Username { get { if (User != null) return User.Username; else return ""; } set { } }
+        public string Username { get { if (User != null) return User.Username; else return ""; } set { User = new User() { Username = value }; } }
         [JsonIgnore]
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
@@ -117,7 +117,7 @@ namespace _ClassLibraryCommon
                 else
                     return "";
             }
-            set { }
+            set { User = new User() { Username = value }; }
         }
 
     }
@@ -479,14 +479,14 @@ namespace _ClassLibraryCommon
             return true;
         }
 
-        public bool GruppeHinzufügen(UserSessionData loginData, string json)
+        public bool GruppeHinzufügen(GruppeMessage gmsg)
         {
-            if (VerifyUser(loginData.user, loginData.sessionid))
+            if (VerifyUser(gmsg.usd.user, gmsg.usd.sessionid))
             {
                 Gruppe newgruppe = null;
                 try
                 {
-                    newgruppe = JsonSerializer.Deserialize<Gruppe>(json);
+                    newgruppe = gmsg.gruppe;
                 }
                 catch (Exception e)
                 {
@@ -528,11 +528,11 @@ namespace _ClassLibraryCommon
             return false;
         }
 
-        public bool GruppeBearbeiten(UserSessionData loginData, string actionstring)
+        public bool GruppeBearbeiten(GruppeMessage gmsg)
         {
             try
             {
-                Gruppe g = JsonSerializer.Deserialize<Gruppe>(actionstring);
+                Gruppe g = gmsg.gruppe;
                 Gruppen.Find(g.GruppenID).Gruppenname = g.Gruppenname;
                 Gruppen.Find(g.GruppenID).Beschreibung = g.Beschreibung;
                 Gruppen.Find(g.GruppenID).User = Users.Find(g.Username);
@@ -566,11 +566,11 @@ namespace _ClassLibraryCommon
             }
         }
 
-        public bool GruppeLöschen(UserSessionData loginData, string actionstring)
+        public bool GruppeLöschen(GruppeMessage gmsg)
         {
             try
             {
-                Gruppe g = JsonSerializer.Deserialize<Gruppe>(actionstring);
+                Gruppe g = gmsg.gruppe;
                 var plants = Pflanzen
                 .Where(s => s.Gruppe.GruppenID.Equals(g.GruppenID))
                 .ToList();

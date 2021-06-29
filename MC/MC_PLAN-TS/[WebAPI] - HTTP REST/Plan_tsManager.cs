@@ -76,9 +76,9 @@ namespace _WebAPI____HTTP_REST
             return _db.PflanzeHinzufügen(pmsg);
         }
 
-        internal bool GruppeHinzufügen(EditMessage action)
+        internal bool GruppeHinzufügen(GruppeMessage gmsg)
         {
-            return _db.GruppeHinzufügen(action.usd, action.actionstring);
+            return _db.GruppeHinzufügen(gmsg);
         }
 
         internal bool PflanzeLöschen(PflanzeMessage pmsg)
@@ -86,9 +86,9 @@ namespace _WebAPI____HTTP_REST
             return _db.PflanzeLöschen(pmsg);
         }
 
-        internal bool GruppeLöschen(EditMessage action)
+        internal bool GruppeLöschen(GruppeMessage gmsg)
         {
-            return _db.GruppeLöschen(action.usd, action.actionstring);
+            return _db.GruppeLöschen(gmsg);
         }
 
         internal bool PflanzeBearbeiten(PflanzeMessage pmsg)
@@ -96,9 +96,9 @@ namespace _WebAPI____HTTP_REST
             return _db.PflanzeBearbeiten(pmsg);
         }
 
-        internal bool GruppeBearbeiten(EditMessage action)
+        internal bool GruppeBearbeiten(GruppeMessage gmsg)
         {
-            return _db.GruppeBearbeiten(action.usd, action.actionstring);
+            return _db.GruppeBearbeiten(gmsg);
         }
     }
 }
