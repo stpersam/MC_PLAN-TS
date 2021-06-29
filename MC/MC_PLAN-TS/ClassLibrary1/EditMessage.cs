@@ -11,7 +11,7 @@ namespace _ClassLibraryCommon
     public class EditMessage
     {
         public string actionstring { get; set; }
-        public UserSessionData USD { get; set; }
+        public UserSessionData usd { get; set; }
 
     }
 }

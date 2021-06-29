@@ -70,7 +70,14 @@ namespace _ClassLibraryCommon
         [Column("Bild")]
         public string Bild { get; set; }
         [Column("Gegossen")]
-        public DateTime Gegossen { get; set; }
+        public DateTime Gegossen { 
+            get {
+                return Gegossen;
+            } 
+            set {
+                Gegossen = value;
+            } 
+        }
         [Column("Groesse")]
         public double Groesse { get; set; }
         [JsonIgnore]
@@ -368,7 +375,7 @@ namespace _ClassLibraryCommon
                     .Where(s => s.User.Username.Equals(user))
                     .ToList();
                 foreach (Pflanze p in plants)
-                {
+                {                    
                     returnstring += JsonSerializer.Serialize(p);
                 }
             }
