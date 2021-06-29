@@ -152,7 +152,9 @@ namespace _ClassLibraryCommon
             {
                 this.Database.EnsureCreated();
                 this.SaveChanges();
-                TestDatenGenerieren();
+                if (!Pflanzen.Any()) { 
+                    TestDatenGenerieren();
+                }
             }
            
         }
