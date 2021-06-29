@@ -85,7 +85,7 @@ namespace _ClassLibraryCommon
         [Column("Gruppe")]
         public Gruppe Gruppe { get; set; }
         [Column("Gruppenname")]
-        public string Gruppenname { get { if (Gruppe != null) return Gruppe.Gruppenname; else return ""; } set { Gruppe = new Gruppe() { Gruppenname = value }; } }
+        public string Gruppenname { get { if (Gruppe != null) return Gruppe.Gruppenname; else return ""; } set { Gruppe = new Gruppe() { Gruppenname = value }; } }      
 
         [JsonIgnore]
         [Column("Pflanzenart")]
@@ -550,14 +550,13 @@ namespace _ClassLibraryCommon
             try
             {
                 Pflanze p = pmsg.pflanze;
-
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().Bild = p.Bild;
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().Gegossen = p.Gegossen;
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().Groesse = p.Groesse;
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().Gruppe = p.Gruppe;
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().Pflanzenart = p.Pflanzenart;
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().Pflanzenname = p.Pflanzenname;
-                Pflanzen.Where(g => g.Pflanzenname.Equals(p.Pflanzenname)).FirstOrDefault().User = p.User;
+                Pflanzen.Find(p.PflanzenID).Bild = p.Bild;
+                Pflanzen.Find(p.PflanzenID).Gegossen = p.Gegossen;
+                Pflanzen.Find(p.PflanzenID).Groesse = p.Groesse;
+                Pflanzen.Find(p.PflanzenID).Gruppe = p.Gruppe;
+                Pflanzen.Find(p.PflanzenID).Pflanzenart = p.Pflanzenart;
+                Pflanzen.Find(p.PflanzenID).Pflanzenname = p.Pflanzenname;
+                Pflanzen.Find(p.PflanzenID).User = p.User;
                 this.SaveChanges();
                 return true;
             }
