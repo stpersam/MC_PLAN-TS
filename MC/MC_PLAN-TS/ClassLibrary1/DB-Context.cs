@@ -550,13 +550,19 @@ namespace _ClassLibraryCommon
             try
             {
                 Pflanze p = pmsg.pflanze;
+                Pflanzen.Find(pmsg.Pflanzen_ID).Pflanzenname = p.Pflanzenname;
                 Pflanzen.Find(pmsg.Pflanzen_ID).Bild = p.Bild;
                 Pflanzen.Find(pmsg.Pflanzen_ID).Gegossen = p.Gegossen;
                 Pflanzen.Find(pmsg.Pflanzen_ID).Groesse = p.Groesse;
-                Pflanzen.Find(pmsg.Pflanzen_ID).Gruppe = p.Gruppe;
-                Pflanzen.Find(pmsg.Pflanzen_ID).Pflanzenart = p.Pflanzenart;
-                Pflanzen.Find(pmsg.Pflanzen_ID).Pflanzenname = p.Pflanzenname;
-                Pflanzen.Find(pmsg.Pflanzen_ID).User = p.User;
+
+                Pflanzen.Find(pmsg.Pflanzen_ID).Gruppe = Gruppen.Where(g => g.Gruppenname == p.Gruppenname).FirstOrDefault();
+                Pflanzen.Find(pmsg.Pflanzen_ID).Pflanzenart = Pflanzenarten.Where(g => g.Bezeichnung == p.Pflanzeartname).FirstOrDefault();
+                Pflanzen.Find(pmsg.Pflanzen_ID).User = Users.Where(g => g.Username == p.Username).FirstOrDefault();
+
+
+
+
+
                 this.SaveChanges();
                 return true;
             }
