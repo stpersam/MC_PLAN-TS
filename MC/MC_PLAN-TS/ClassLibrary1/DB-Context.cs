@@ -269,7 +269,19 @@ namespace _ClassLibraryCommon
             }
             else
             {
-                Users.Add(new User() { Username = username, EMail = email, Passwort = password, Privileges = "User" });
+                Session deadsession = null;
+                if (!Sessions.Any())
+                {
+                    deadsession = new Session() { SessionId = -1, Status = false, Datum = DateTime.Now };
+                    Sessions.Add(deadsession);
+                    this.SaveChanges();
+                }
+                else
+                {
+                    deadsession = Sessions.First();
+                }
+
+                Users.Add(new User() { Username = username, EMail = email, Passwort = password, Privileges = "User", Session = deadsession });
                 this.SaveChanges();
                 return true;
             }
